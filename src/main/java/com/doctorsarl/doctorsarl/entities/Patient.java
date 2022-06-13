@@ -1,11 +1,13 @@
 package com.doctorsarl.doctorsarl.entities;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.Collection;
 
 @Entity
+@DiscriminatorValue("patient") // indique le type dans la table users à chaque fois quion cree un patient
 public class Patient extends Personne {
 
     @Column(nullable = false)

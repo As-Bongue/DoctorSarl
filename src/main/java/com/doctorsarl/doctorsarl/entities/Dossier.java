@@ -10,6 +10,8 @@ import java.util.Date;
 public class Dossier implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(unique = true, nullable = false, length = 15)
     private String code;
     @Column(nullable = false)

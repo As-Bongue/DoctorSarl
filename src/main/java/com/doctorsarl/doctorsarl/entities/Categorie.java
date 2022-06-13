@@ -8,6 +8,8 @@ import java.util.Collection;
 public class Categorie implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(nullable = false, unique = true, length = 15)
     private String code;
     @Column(nullable = false, unique = true)

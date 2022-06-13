@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // specifier que la classe possede des classes derivées
+@DiscriminatorColumn(name = "type") // colone qui pecifie le type de personne
 public abstract class Personne implements Serializable {
 
     @Id
