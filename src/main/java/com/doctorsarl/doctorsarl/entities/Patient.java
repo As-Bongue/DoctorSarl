@@ -1,10 +1,20 @@
 package com.doctorsarl.doctorsarl.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.Collection;
+
+@Entity
 public class Patient extends Personne {
 
+    @Column(nullable = false)
     private int age;
-
+    @Column(nullable = false)
     private char sexe;
+
+    @OneToMany(mappedBy = "patient")
+    private Collection<Dossier> dossiers;
 
     public Patient() {
     }

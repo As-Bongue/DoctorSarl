@@ -1,8 +1,6 @@
 package com.doctorsarl.doctorsarl.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -10,17 +8,17 @@ import java.io.Serializable;
 public abstract class Personne implements Serializable {
 
     @Id
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String nom;
-
     private  String prenom;
-
+    @Column(nullable = false)
     private String adresse;
-
+    @Column(nullable = false, unique = true)
     private String telephone;
-
+    @Column(nullable = false, unique = true, length = 25)
     private  String email;
 
     public Personne() {
