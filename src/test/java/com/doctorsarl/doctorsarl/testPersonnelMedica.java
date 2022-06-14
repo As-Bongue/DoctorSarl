@@ -10,13 +10,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class testPersonnelMedica {
 
     @Autowired
-    PersonneRepository personneRepository;
+    private PersonneRepository personneRepository;
 
     @Test
     public void testCreatePersonne(){
-        PersonnelMedical p = new PersonnelMedical(
-                "as", "bongue", "yassa", "653987653", "bonguea2@gmail.com", "chirugien", "douala",true
-        );
+        PersonnelMedical p = new PersonnelMedical();
+        p.setNom("bongue");
+        p.setPrenom("as");
+        p.setEmail("bonguea2@gmail.com");
+        p.setAdresse("yassa");
+        p.setProfession("dentiste");
+        p.setTelephone("6582548624");
+        p.setVille("douala");
+        p.setDisponibilite(false);
         personneRepository.save(p);
     }
 }
