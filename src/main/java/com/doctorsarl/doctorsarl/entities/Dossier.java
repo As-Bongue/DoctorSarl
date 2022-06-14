@@ -3,8 +3,8 @@ package com.doctorsarl.doctorsarl.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Dossier implements Serializable {
@@ -24,18 +24,18 @@ public class Dossier implements Serializable {
     private Patient patient;
 
     @ManyToMany( mappedBy = "dossiers",fetch = FetchType.EAGER) //recupere un dossier avec tous ses services
-    private Collection<Service> sevices;
+    private List<Service> services = new ArrayList<>();
 
     public Dossier() {
     }
 
-    public Dossier(String code, String note, boolean statut, Date date_creation, Patient patient, Collection<Service> sevices) {
+    public Dossier(String code, String note, boolean statut, Date date_creation, Patient patient, List<Service> services) {
         this.code = code;
         this.note = note;
         this.statut = statut;
         this.date_creation = date_creation;
         this.patient = patient;
-        this.sevices = sevices;
+        this.services = services;
     }
 
     public String getCode() {
@@ -78,23 +78,24 @@ public class Dossier implements Serializable {
         this.patient = patient;
     }
 
-    public Collection<Service> getSevices() {
-        return sevices;
+    public List<Service> getServices() {
+        return services;
     }
 
-    public void setSevices(Collection<Service> sevices) {
-        this.sevices = sevices;
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 
     @Override
     public String toString() {
         return "Dossier{" +
-                "code='" + code + '\'' +
+                "id=" + id +
+                ", code='" + code + '\'' +
                 ", note='" + note + '\'' +
                 ", statut=" + statut +
                 ", date_creation=" + date_creation +
                 ", patient=" + patient +
-                ", sevices=" + sevices +
+                ", services=" + services +
                 '}';
     }
 }

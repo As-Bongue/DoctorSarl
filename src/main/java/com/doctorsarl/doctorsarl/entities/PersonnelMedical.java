@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("perso_medical") // indique le type dans la table users à chaque fois qu'on cree un personnel medical
@@ -14,10 +14,10 @@ public class PersonnelMedical extends Personne {
     private String profession;
     @Column(nullable = false)
     private String ville;
-    private boolean disponibilite;
+    private boolean disponibilite = true;
 
     @OneToMany(mappedBy = "personne")
-    private Collection<Service> services;
+    private List<Service> services;
 
     public PersonnelMedical() {
     }

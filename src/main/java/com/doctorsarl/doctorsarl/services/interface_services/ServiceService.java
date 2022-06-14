@@ -12,4 +12,5 @@ public interface ServiceService {
     void deleteById(int id);
     Service getService(int id);
     List<Service> getAllServices();
+    void addServiceToDossier(String nom, String code);
 }

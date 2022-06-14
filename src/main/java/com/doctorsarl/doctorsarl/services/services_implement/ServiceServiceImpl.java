@@ -1,6 +1,8 @@
 package com.doctorsarl.doctorsarl.services.services_implement;
 
+import com.doctorsarl.doctorsarl.entities.Dossier;
 import com.doctorsarl.doctorsarl.entities.Service;
+import com.doctorsarl.doctorsarl.repository.DossierRepository;
 import com.doctorsarl.doctorsarl.repository.ServiceRepository;
 import com.doctorsarl.doctorsarl.services.interface_services.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,14 @@ import javax.persistence.Inheritance;
 import java.util.List;
 
 @org.springframework.stereotype.Service
+
 public class ServiceServiceImpl implements ServiceService {
 
     @Autowired
     ServiceRepository serviceRepository;
+
+    @Autowired
+    DossierRepository dossierRepository;
 
     @Override
     public Service saveService(Service s) {
@@ -42,5 +48,12 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public List<Service> getAllServices() {
         return serviceRepository.findAll();
+    }
+
+    @Override
+    public void addServiceToDossier(String nom, String code) {
+        Dossier dossier = dossierRepository.findByCode(code);
+        Service service = serviceRepository.findByNom(nom);
+        dossier.getServices().add(service);
     }
 }

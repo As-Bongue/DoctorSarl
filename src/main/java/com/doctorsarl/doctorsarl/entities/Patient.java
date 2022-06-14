@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("patient") // indique le type dans la table users à chaque fois quion cree un patient
@@ -16,7 +16,7 @@ public class Patient extends Personne {
     private char sexe;
 
     @OneToMany(mappedBy = "patient")
-    private Collection<Dossier> dossiers;
+    private List<Dossier> dossiers;
 
     public Patient() {
     }

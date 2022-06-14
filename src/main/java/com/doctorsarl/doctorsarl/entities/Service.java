@@ -3,7 +3,7 @@ package com.doctorsarl.doctorsarl.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Service implements Serializable {
@@ -24,7 +24,7 @@ public class Service implements Serializable {
     private Categorie categorie;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Dossier> dossiers = new ArrayList<>();
+    private List<Dossier> dossiers = new ArrayList<>();
 
     public Service() {
     }

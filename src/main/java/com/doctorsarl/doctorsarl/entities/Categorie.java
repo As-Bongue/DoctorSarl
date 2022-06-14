@@ -2,7 +2,7 @@ package com.doctorsarl.doctorsarl.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Categorie implements Serializable {
@@ -16,15 +16,22 @@ public class Categorie implements Serializable {
     private String nom;
 
     @OneToMany(mappedBy = "categorie")
-    private Collection<Service> services;
+    private List<Service> services;
 
     public Categorie() {
     }
 
-    public Categorie(String code, String nom, Collection<Service> services) {
+    public Categorie(String code, String nom) {
         this.code = code;
         this.nom = nom;
-        this.services = services;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCode() {
@@ -43,22 +50,22 @@ public class Categorie implements Serializable {
         this.nom = nom;
     }
 
-    public Collection<Service> getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
-    public void setServices(Collection<Service> services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 
     @Override
     public String toString() {
         return "Categorie{" +
+                "id=" + id +
                 ", code='" + code + '\'' +
                 ", nom='" + nom + '\'' +
                 ", services=" + services +
                 '}';
     }
-
 }
 

@@ -6,9 +6,11 @@ import com.doctorsarl.doctorsarl.services.interface_services.DossierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class DossierServiceImpl implements DossierService {
 
     @Autowired
@@ -43,4 +45,5 @@ public class DossierServiceImpl implements DossierService {
     public List<Dossier> getAllDossier() {
         return dossierRepository.findAll();
     }
+
 }
