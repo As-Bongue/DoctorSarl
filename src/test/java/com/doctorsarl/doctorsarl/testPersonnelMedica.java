@@ -1,7 +1,7 @@
 package com.doctorsarl.doctorsarl;
 
 import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
-import com.doctorsarl.doctorsarl.repository.PersonneRepository;
+import com.doctorsarl.doctorsarl.repository.PersonnelMedicalRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,19 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class testPersonnelMedica {
 
     @Autowired
-    private PersonneRepository personneRepository;
+    private PersonnelMedicalRepository personnelMedicalRepository;
 
     @Test
-    public void testCreatePersonne(){
-        PersonnelMedical p = new PersonnelMedical();
-        p.setNom("bongue");
-        p.setPrenom("as");
-        p.setEmail("bonguea2@gmail.com");
-        p.setAdresse("yassa");
-        p.setProfession("dentiste");
-        p.setTelephone("6582548624");
-        p.setVille("douala");
-        p.setDisponibilite(false);
-        personneRepository.save(p);
+    public void testCreatePersonnel(){
+        PersonnelMedical p = new PersonnelMedical("bongue as", "as", "yassa", "65825486254", "bonguea25@gmail.com","", "dentiste", "douala", false);
+        personnelMedicalRepository.save(p);
     }
 }

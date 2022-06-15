@@ -21,9 +21,10 @@ public class Patient extends Personne {
     public Patient() {
     }
 
-    public Patient(String nom, String prenom, String adresse, String telephone, String email, int age) {
-        super(nom, prenom, adresse, telephone, email);
+    public Patient(String nom, String prenom, String adresse, String telephone, String email, String password, int age, char sexe) {
+        super(nom, prenom, adresse, telephone, email, password);
         this.age = age;
+        this.sexe = sexe;
     }
 
     public int getAge() {
@@ -42,11 +43,20 @@ public class Patient extends Personne {
         this.sexe = sexe;
     }
 
+    public List<Dossier> getDossiers() {
+        return dossiers;
+    }
+
+    public void setDossiers(List<Dossier> dossiers) {
+        this.dossiers = dossiers;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
                 "age=" + age +
                 ", sexe=" + sexe +
+                ", dossiers=" + dossiers +
                 '}';
     }
 }

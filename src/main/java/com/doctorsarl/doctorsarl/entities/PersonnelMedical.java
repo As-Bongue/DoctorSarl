@@ -14,7 +14,8 @@ public class PersonnelMedical extends Personne {
     private String profession;
     @Column(nullable = false)
     private String ville;
-    private boolean disponibilite = true;
+
+    private boolean disponibilite;
 
     @OneToMany(mappedBy = "personne")
     private List<Service> services;
@@ -22,8 +23,8 @@ public class PersonnelMedical extends Personne {
     public PersonnelMedical() {
     }
 
-    public PersonnelMedical(String nom, String prenom, String adresse, String telephone, String email, String profession, String ville, boolean disponibilite) {
-        super(nom, prenom, adresse, telephone, email);
+    public PersonnelMedical(String nom, String prenom, String adresse, String telephone, String email, String password, String profession, String ville, boolean disponibilite) {
+        super(nom, prenom, adresse, telephone, email, password);
         this.profession = profession;
         this.ville = ville;
         this.disponibilite = disponibilite;
@@ -53,12 +54,21 @@ public class PersonnelMedical extends Personne {
         this.disponibilite = disponibilite;
     }
 
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
     @Override
     public String toString() {
         return "PersonnelMedical{" +
                 "profession='" + profession + '\'' +
                 ", ville='" + ville + '\'' +
                 ", disponibilite=" + disponibilite +
+                ", services=" + services +
                 '}';
     }
 }

@@ -6,6 +6,7 @@ import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
 import com.doctorsarl.doctorsarl.entities.Service;
 import com.doctorsarl.doctorsarl.repository.CategorieRepository;
 import com.doctorsarl.doctorsarl.repository.PersonneRepository;
+import com.doctorsarl.doctorsarl.repository.PersonnelMedicalRepository;
 import com.doctorsarl.doctorsarl.repository.ServiceRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class TestService {
     ServiceRepository serviceRepository;
 
     @Autowired
-    PersonneRepository personneRepository;
+    PersonnelMedicalRepository personnelMedicalRepository;
 
     @Autowired
     CategorieRepository categorieRepository;
@@ -27,7 +28,7 @@ public class TestService {
     public void testCreateService(){
 
         PersonnelMedical p = new PersonnelMedical(
-                "as", "bongue", "yassa", "653987653", "bonguea2@gmail.com", "chirugien", "douala",true
+                "as", "bongue", "yassa", "653987653", "bonguea2@gmail.com", "", "chirugien", "douala", true
         );
 
         Categorie c = new Categorie("0001", "cat01");
