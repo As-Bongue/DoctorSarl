@@ -27,13 +27,12 @@ public class TestService {
     @Test
     public void testCreateService(){
 
-        PersonnelMedical p = new PersonnelMedical(
-                "as", "bongue", "yassa", "653987653", "bonguea2@gmail.com", "", "chirugien", "douala", true
-        );
+        Categorie c = categorieRepository.findById(1).get();
 
-        Categorie c = new Categorie("0001", "cat01");
+        PersonnelMedical p = personnelMedicalRepository.findById(1).get();
 
         Service serv = new Service("0045", "garde", 2500, p, c);
         serviceRepository.save(serv);
     }
+
 }
