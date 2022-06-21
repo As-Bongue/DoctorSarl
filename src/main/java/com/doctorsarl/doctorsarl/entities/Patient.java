@@ -10,9 +10,8 @@ import java.util.List;
 @DiscriminatorValue("patient") // indique le type dans la table users à chaque fois quion cree un patient
 public class Patient extends Personne {
 
-    @Column(nullable = false)
     private int age;
-    @Column(nullable = false)
+
     private char sexe;
 
     @OneToMany(mappedBy = "patient")

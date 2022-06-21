@@ -37,6 +37,14 @@ public class Service implements Serializable {
         this.categorie = categorie;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCode_service() {
         return code_service;
     }
@@ -75,6 +83,14 @@ public class Service implements Serializable {
 
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
+    }
+
+    public List<Dossier> getDossiers() {
+        return dossiers;
+    }
+
+    public void setDossiers(List<Dossier> dossiers) {
+        this.dossiers = dossiers;
     }
 
     @Override

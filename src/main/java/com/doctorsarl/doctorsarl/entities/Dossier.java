@@ -29,13 +29,20 @@ public class Dossier implements Serializable {
     public Dossier() {
     }
 
-    public Dossier(String code, String note, boolean statut, Date date_creation, Patient patient, List<Service> services) {
+    public Dossier(String code, String note, boolean statut, Date date_creation, Patient patient) {
         this.code = code;
         this.note = note;
         this.statut = statut;
         this.date_creation = date_creation;
         this.patient = patient;
-        this.services = services;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCode() {

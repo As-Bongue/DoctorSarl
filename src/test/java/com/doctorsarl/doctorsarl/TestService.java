@@ -1,38 +1,98 @@
 package com.doctorsarl.doctorsarl;
 
 import com.doctorsarl.doctorsarl.entities.Categorie;
-import com.doctorsarl.doctorsarl.entities.Personne;
+import com.doctorsarl.doctorsarl.entities.Dossier;
 import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
 import com.doctorsarl.doctorsarl.entities.Service;
 import com.doctorsarl.doctorsarl.repository.CategorieRepository;
-import com.doctorsarl.doctorsarl.repository.PersonneRepository;
 import com.doctorsarl.doctorsarl.repository.PersonnelMedicalRepository;
 import com.doctorsarl.doctorsarl.repository.ServiceRepository;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
 
-@SpringBootTest
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TestService {
 
     @Autowired
-    ServiceRepository serviceRepository;
+    private ServiceRepository serviceRepository;
 
     @Autowired
-    PersonnelMedicalRepository personnelMedicalRepository;
+    private PersonnelMedicalRepository personnelMedicalRepository;
 
     @Autowired
-    CategorieRepository categorieRepository;
+    private CategorieRepository categorieRepository;
 
     @Test
+    @Rollback(false)
+    @Order(1)
     public void testCreateService(){
 
         Categorie c = categorieRepository.findById(1).get();
 
-        PersonnelMedical p = personnelMedicalRepository.findById(1).get();
+        PersonnelMedical p = personnelMedicalRepository.findById(2).get();
 
-        Service serv = new Service("0045", "garde", 2500, p, c);
-        serviceRepository.save(serv);
+        Service serv = serviceRepository.save(new Service("0045", "garde", 2500, p, c));
+
+        assertThat(serv.getId()).isGreaterThan(0);
+    }
+
+    @Test
+    @Rollback(false)
+    @Order(2)
+    public void ShowAllServices(){
+        List<Service> services = serviceRepository.findAll();
+
+        assertThat(services).size().isGreaterThan(0);
+    }
+
+    @Test
+    @Rollback(false)
+    @Order(3)
+    public void showService(){
+        Service s = serviceRepository.findById(1).get();
+
+        assertThat(s.getNom()).isEqualTo("garde");
+    }
+
+    @Test
+    @Rollback(false)
+    @Order(4)
+    public void updateService(){
+        Service s = serviceRepository.findById(1).get();
+        s.setNom("marternite");
+
+        assertThat(s.getNom()).isEqualTo("maternite");
+    }
+
+    @Test
+    @Rollback(false)
+    @Order(5)
+    public void ShowAllDossier(){
+        Service s = serviceRepository.findById(1).get();
+        List<Dossier> dossiers = s.getDossiers();
+
+        assertThat(dossiers).size().isGreaterThan(0);
+    }
+
+    @Test
+    @Rollback(false)
+    @Order(6)
+    public void deleteService(){
+        Service s = serviceRepository.findById(1).get();
+        serviceRepository.deleteById(s.getId());
+
+        Service s0 = serviceRepository.findById(1).get();
+        assertThat(s0).isNull();
     }
 
 }

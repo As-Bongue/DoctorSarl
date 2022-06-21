@@ -10,9 +10,8 @@ import java.util.List;
 @DiscriminatorValue("perso_medical") // indique le type dans la table users à chaque fois qu'on cree un personnel medical
 public class PersonnelMedical extends Personne {
 
-    @Column(nullable = false)
     private String profession;
-    @Column(nullable = false)
+
     private String ville;
 
     private boolean disponibilite;
