@@ -1,12 +1,10 @@
-body{
-    background: darkgrey;
+
+.welcome{
+    background-image: url("../images/as.jpg");
+    background-size: cover;
+    height: 500px;
 }
 
-h1{
-    color: red;
-    font-max-size: 85em;
-}
-
-.content1{
-    background: darkgray;
+.welcome h1{
+    color: darkred;
 }

@@ -1,10 +1,13 @@
 package com.doctorsarl.doctorsarl.entities;
 
+import org.hibernate.annotations.OnDelete;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Table(name = "categories")
 public class Categorie implements Serializable {
 
     @Id

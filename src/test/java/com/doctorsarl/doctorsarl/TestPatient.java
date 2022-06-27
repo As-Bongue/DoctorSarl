@@ -25,7 +25,7 @@ public class TestPatient {
     @Rollback(false)
     @Order(1)
     public void testCreatePatient(){
-        Patient p = new Patient("temj", "junior", "casa", "65875552", "temj@gmail.com", "", 15, 'm');
+        Patient p = new Patient("as", "bbbbb", "casa", "6554875552", "tem45j@gmail.com", "", 15, 'f');
         patientRepository.save(p);
         assertThat(p.getId()).isGreaterThan(0);
     }
@@ -35,6 +35,10 @@ public class TestPatient {
     @Order(2)
     public  void showAllPatient(){
         List<Patient> patients = patientRepository.findAll();
+
+        for (Patient patient: patients){
+            System.out.println(patient);
+        }
 
         assertThat(patients).size().isGreaterThan(0);
     }
@@ -52,7 +56,7 @@ public class TestPatient {
     @Rollback(false)
     @Order(4)
     public  void updatePatient(){
-        Patient p = patientRepository.findById(1).get();
+        Patient p = patientRepository.findById(2).get();
         p.setNom("astrin");
 
         assertThat(p.getNom()).isEqualTo("astrin");

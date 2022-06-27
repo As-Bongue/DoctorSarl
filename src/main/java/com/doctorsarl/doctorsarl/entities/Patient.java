@@ -1,12 +1,10 @@
 package com.doctorsarl.doctorsarl.entities;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "patients")
 @DiscriminatorValue("patient") // indique le type dans la table users à chaque fois quion cree un patient
 public class Patient extends Personne {
 
@@ -14,7 +12,7 @@ public class Patient extends Personne {
 
     private char sexe;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Dossier> dossiers;
 
     public Patient() {

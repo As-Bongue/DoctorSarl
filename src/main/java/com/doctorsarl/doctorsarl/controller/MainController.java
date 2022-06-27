@@ -10,4 +10,9 @@ public class MainController {
     public String showHomePge() {
         return "about";
     }
+
+    @GetMapping("/dashboard")
+    public String showDashboard(){
+        return "admin/index";
+    }
 }

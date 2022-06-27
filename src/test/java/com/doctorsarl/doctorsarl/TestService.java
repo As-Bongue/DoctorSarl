@@ -39,9 +39,9 @@ public class TestService {
 
         Categorie c = categorieRepository.findById(1).get();
 
-        PersonnelMedical p = personnelMedicalRepository.findById(2).get();
+        PersonnelMedical p = personnelMedicalRepository.findById(1).get();
 
-        Service serv = serviceRepository.save(new Service("0045", "garde", 2500, p, c));
+        Service serv = serviceRepository.save(new Service("001", "maternito", 2500, p, c));
 
         assertThat(serv.getId()).isGreaterThan(0);
     }

@@ -1,10 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Patient</title>
+    <!--        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
+    <link rel="stylesheet" th:href="@{css/styl.css}" >
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{js/jquery-3.3.1.js}"></script>
 </head>
+
 <body>
+
+<!-- menu section -->
+
+<section id="menu">
+    <div class="logo">
+        <img src="" alt="">
+        <h2>DoctorSarl</h2>
+    </div>
+
+    <div class="items" style="margin-top: 70px;">
+        <li>
+            <img th:src="@{images/home_24px.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Accueil</a>
+        </li>
+        <li>
+            <img th:src="@{images/dashboard.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Dashboard</a>
+        </li>
+        <li>
+            <img th:src="@{images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
+        </li>
+        <li>
+            <img th:src="@{images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
+        </li>
+        <li>
+            <img th:src="@{images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
+        </li>
+        <li>
+            <img th:src="@{images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
+        </li>
+        <li>
+            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
+        </li>
+    </div>
+</section>
+
+<!-- interface section -->
+
+<section id="interface">
+    <div class="navigation" >
+        <div class="nav1">
+            <div id="menu-btn">
+                <img th:src="@{images/menu.png}" alt="" class="i">
+            </div>
+            <div class="search">
+                <a href="#"><img th:src="@{images/search.png}" alt="" class="i"></a>
+                <input type="text" placeholder="Search">
+            </div>
+        </div>
+
+        <!-- profile -->
+        <div class="profile">
+            <img th:src="@{images/bell.png}" alt="" class="i">
+            <img th:src="@{images/administrator.png}" alt="" class="i">
+        </div>
+    </div>
+
+    <!--    links section-->
+    <div class="liens" style="margin: 90px 15px 30px 15px;">
+        <button type="button" class="btn btn-outline-success">Tous les patients</button>
+    </div>
+    <!-- form section -->
+
+    <div class="formulaire" style="margin: 3% 15% 8% 15%;">
+        <h1 class="text-center mb-5">Editer le patient</h1>
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="inputNom" class="form-label">Nom</label>
+                <input type="email" class="form-control" id="inputNom">
+            </div>
+            <div class="col-md-6">
+                <label for="inputPrenom" class="form-label">Prenom</label>
+                <input type="password" class="form-control" id="inputPrenom">
+            </div>
+            <div class="col-md-6">
+                <label for="inputTelephone" class="form-label">Telephone</label>
+                <input type="email" class="form-control" id="inputTelephone">
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="password" class="form-control" id="inputEmail">
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            </div>
+            <div class="col-md-6">
+                <label for="inputAge" class="form-label">Age</label>
+                <input type="number" class="form-control" id="inputAge">
+            </div>
+            <div class="col-md-6">
+                <label for="inputSexe" class="form-label">Sexe</label>
+                <input type="text" class="form-control" id="inputSexe">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+<script th:src="@{js/index.js}"></script>
 
 </body>
 </html>

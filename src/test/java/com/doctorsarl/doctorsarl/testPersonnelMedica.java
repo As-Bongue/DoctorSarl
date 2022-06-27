@@ -25,7 +25,7 @@ public class testPersonnelMedica {
     @Rollback(false)
     @Order(1)
     public void testCreatePersonnel(){
-        PersonnelMedical p = new PersonnelMedical("bongue as", "as", "yassa", "65825486254", "bonguea25@gmail.com","", "dentiste", "douala", false);
+        PersonnelMedical p = new PersonnelMedical("bongue", "as", "yassa", "652586254", "bonguea25@gmail.com","", "dentiste", "douala");
         personnelMedicalRepository.save(p);
         assertThat(p.getId()).isGreaterThan(0);
     }

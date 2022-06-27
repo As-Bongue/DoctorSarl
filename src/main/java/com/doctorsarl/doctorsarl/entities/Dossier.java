@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "dossiers")
 public class Dossier implements Serializable {
 
     @Id
@@ -23,7 +24,7 @@ public class Dossier implements Serializable {
     @ManyToOne
     private Patient patient;
 
-    @ManyToMany( mappedBy = "dossiers",fetch = FetchType.EAGER) //recupere un dossier avec tous ses services
+    @ManyToMany( mappedBy = "dossiers") //recupere un dossier avec tous ses services
     private List<Service> services = new ArrayList<>();
 
     public Dossier() {

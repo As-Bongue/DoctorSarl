@@ -1,12 +1,10 @@
 package com.doctorsarl.doctorsarl.entities;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "personnels")
 @DiscriminatorValue("perso_medical") // indique le type dans la table users à chaque fois qu'on cree un personnel medical
 public class PersonnelMedical extends Personne {
 
@@ -16,17 +14,17 @@ public class PersonnelMedical extends Personne {
 
     private boolean disponibilite;
 
-    @OneToMany(mappedBy = "personne")
+    @OneToMany(mappedBy = "personne", cascade = CascadeType.ALL)
     private List<Service> services;
 
     public PersonnelMedical() {
     }
 
-    public PersonnelMedical(String nom, String prenom, String adresse, String telephone, String email, String password, String profession, String ville, boolean disponibilite) {
+    public PersonnelMedical(String nom, String prenom, String adresse, String telephone, String email, String password, String profession, String ville) {
         super(nom, prenom, adresse, telephone, email, password);
         this.profession = profession;
         this.ville = ville;
-        this.disponibilite = disponibilite;
+        this.disponibilite = true;
     }
 
     public String getProfession() {

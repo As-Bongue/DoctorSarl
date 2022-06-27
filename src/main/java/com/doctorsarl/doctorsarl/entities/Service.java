@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "services")
 public class Service implements Serializable {
 
     @Id
@@ -23,7 +24,13 @@ public class Service implements Serializable {
     @ManyToOne
     private Categorie categorie;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "service_dossiers",
+        joinColumns = {
+            @JoinColumn(name = "services_id", referencedColumnName = "id", nullable = false, updatable = false)},
+        inverseJoinColumns = {
+            @JoinColumn(name = "dossiers_id", referencedColumnName = "id", nullable = false, updatable = false)
+        })
     private List<Dossier> dossiers = new ArrayList<>();
 
     public Service() {

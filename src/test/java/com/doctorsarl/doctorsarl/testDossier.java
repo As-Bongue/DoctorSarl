@@ -5,6 +5,7 @@ import com.doctorsarl.doctorsarl.entities.Patient;
 import com.doctorsarl.doctorsarl.entities.Service;
 import com.doctorsarl.doctorsarl.repository.DossierRepository;
 import com.doctorsarl.doctorsarl.repository.PatientRepository;
+import com.doctorsarl.doctorsarl.repository.ServiceRepository;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.test.annotation.Rollback;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,17 +27,28 @@ public class testDossier {
     private DossierRepository dossierRepository;
 
     @Autowired
-    PatientRepository patientRepository;
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private ServiceRepository serviceRepository;
 
     @Test
     @Rollback(false)
     @Order(1)
     public void testCreateDossier(){
 
-        Patient p = patientRepository.findById(1).get();
+        Patient p = patientRepository.findById(2).get();
+        Service s = serviceRepository.findById(1).get();
 
-        Dossier d   = dossierRepository.save(new Dossier("003","jhgjygyj", true, new Date(), p));
-        assertThat(d.getCode()).isEqualTo("003");
+        Dossier d   = new Dossier("001","jhgjygyj", false, new Date(), p);
+
+        List<Service> s0 = new ArrayList<>();
+        s0.add(s);
+
+        d.getServices().addAll(s0);
+
+        dossierRepository.save(d);
+        assertThat(d.getCode()).isEqualTo("001");
     }
 
     @Test
