@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <!--    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
     <link rel="stylesheet" th:href="@{css/styl.css}" >
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/js/bootstrap.min.js}">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <script th:src="@{js/jquery-3.3.1.js}"></script>
 </head>
 
@@ -43,6 +43,9 @@
         <li>
             <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
+        <li>
+            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+        </li>
     </div>
 </section>
 
@@ -67,8 +70,63 @@
         </div>
     </div>
 
-    <!-- dashboard section -->
+    <!--    links section-->
+    <div class="liens flex" style="margin: 90px 15px 30px 15px;">
+        <a th:href="@{/dossier_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{images/plus.png}"> Creer une dossier
+        </a>
+        <a th:href="@{/affectation_create}" class="btn btn-secondary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{images/plus.png}"> Ajouter un service
+        </a>
+    </div>
 
+    <!-- dashboard section -->
+    <div class="formulaire text-center">
+        <div>
+            <h1>Liste des dossiers</h1>
+        </div>
+
+        <!--        message apres insertion-->
+        <div th:if="${message}" class="alert-success text-center my-5">
+            [[${message}]]
+        </div>
+
+       <div class="tableau mx-5">
+           <table class="table table-bordered">
+               <thead class="table-info">
+               <tr>
+                   <th>ID</th>
+                   <th>CODE</th>
+                   <th>NOTE</th>
+                   <th>STATUT</th>
+                   <th>DATE OUVERTURE</th>
+                   <th>PATIENT</th>
+                   <th>ACTIONS</th>
+               </tr>
+               </thead>
+               <tbody>
+               <th:block th:each="dossier : ${dossiers}">
+                   <tr>
+                       <td>[[${dossier.id}]]</td>
+                       <td>[[${dossier.code}]]</td>
+                       <td>[[${dossier.note}]]</td>
+                       <td>[[${dossier.statut}]]</td>
+                       <td>[[${dossier.date_creation}]]</td>
+                       <td>[[${dossier.patient.nom}]]</td>
+                       <td colspan="2">
+                           <a class="h4" th:href="@{'/dossier_edit/' + ${dossier.id}}" style="margin-right: 15%;">
+                               <img th:src="@{images/edit.png}" alt="modifier" title="modifier" >
+                           </a>
+                           <a class="h4" th:href="@{'/dossier_delete/' + ${dossier.id}}">
+                               <img th:src="@{images/delete.png}" alt="suprimer" title="suprimer">
+                           </a>
+                       </td>
+                   </tr>
+               </th:block>
+               </tbody>
+           </table>
+       </div>
+    </div>
 </section>
 
 <script th:src="@{js/index.js}"></script>

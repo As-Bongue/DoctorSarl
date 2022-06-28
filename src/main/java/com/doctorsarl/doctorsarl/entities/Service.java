@@ -24,15 +24,6 @@ public class Service implements Serializable {
     @ManyToOne
     private Categorie categorie;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "service_dossiers",
-        joinColumns = {
-            @JoinColumn(name = "services_id", referencedColumnName = "id", nullable = false, updatable = false)},
-        inverseJoinColumns = {
-            @JoinColumn(name = "dossiers_id", referencedColumnName = "id", nullable = false, updatable = false)
-        })
-    private List<Dossier> dossiers = new ArrayList<>();
-
     public Service() {
     }
 
@@ -90,14 +81,6 @@ public class Service implements Serializable {
 
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
-    }
-
-    public List<Dossier> getDossiers() {
-        return dossiers;
-    }
-
-    public void setDossiers(List<Dossier> dossiers) {
-        this.dossiers = dossiers;
     }
 
     @Override

@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editer Patient</title>
+    <title>Ajouter Patient</title>
     <!--        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
     <link rel="stylesheet" th:href="@{css/styl.css}" >
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <script th:src="@{js/jquery-3.3.1.js}"></script>
+
 </head>
 
 <body>
@@ -77,15 +78,12 @@
     <!-- form section -->
 
     <div class="formulaire" style="margin: 3% 15% 8% 15%;">
-        <h1 class="text-center mb-5">Editer la categorie</h1>
-        <form class="row g-3 d-block">
+        <h1 class="text-center mb-5">Ajouter une categorie</h1>
+
+        <form class="row g-3 d-block" th:action="@{/affectation_create}" method="post" th:object="${affectation}">
             <div class="col-md-6">
                 <label for="inputCode" class="form-label">Code</label>
-                <input type="email" class="form-control" id="inputCode">
-            </div>
-            <div class="col-md-6">
-                <label for="inputNom" class="form-label">Nom</label>
-                <input type="password" class="form-control" id="inputNom">
+                <input type="datetime-local" class="form-control" id="inputCode" th:field="*{date}">
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Enregistrer</button>

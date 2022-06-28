@@ -24,16 +24,13 @@ public class Dossier implements Serializable {
     @ManyToOne
     private Patient patient;
 
-    @ManyToMany( mappedBy = "dossiers") //recupere un dossier avec tous ses services
-    private List<Service> services = new ArrayList<>();
-
     public Dossier() {
     }
 
-    public Dossier(String code, String note, boolean statut, Date date_creation, Patient patient) {
+    public Dossier(String code, String note, Date date_creation, Patient patient) {
         this.code = code;
         this.note = note;
-        this.statut = statut;
+        this.statut = true;
         this.date_creation = date_creation;
         this.patient = patient;
     }
@@ -86,14 +83,6 @@ public class Dossier implements Serializable {
         this.patient = patient;
     }
 
-    public List<Service> getServices() {
-        return services;
-    }
-
-    public void setServices(List<Service> services) {
-        this.services = services;
-    }
-
     @Override
     public String toString() {
         return "Dossier{" +
@@ -103,7 +92,6 @@ public class Dossier implements Serializable {
                 ", statut=" + statut +
                 ", date_creation=" + date_creation +
                 ", patient=" + patient +
-                ", services=" + services +
                 '}';
     }
 }

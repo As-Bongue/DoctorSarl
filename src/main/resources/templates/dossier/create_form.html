@@ -43,6 +43,9 @@
         <li>
             <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
+        <li>
+            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+        </li>
     </div>
 </section>
 
@@ -69,42 +72,35 @@
 
     <!--    links section-->
     <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <button type="button" class="btn btn-outline-success">Tous les dossiers</button>
+        <a th:href="@{/dossiers}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{images/list.png}"> Tous les dossiers
+        </a>
     </div>
+
     <!-- form section -->
 
     <div class="formulaire" style="margin: 3% 15% 8% 15%;">
         <h1 class="text-center mb-5">Ajouter un dossier</h1>
-        <form class="row g-3">
+        <form class="row g-3" th:action="@{/dossier_create}" th:object="${dossier}" method="post">
             <div class="col-md-6">
                 <label for="inputCode" class="form-label">Code</label>
-                <input type="email" class="form-control" id="inputCode">
+                <input type="text" class="form-control" id="inputCode" th:field="*{code}">
             </div>
             <div class="col-md-6">
                 <label for="inputDate" class="form-label">Date creation</label>
-                <input type="date" class="form-control" id="inputDate">
+                <input type="date" class="form-control" id="inputDate" th:field="*{date_creation}">
             </div>
-            <select class="form-select form-select-sm w-50" aria-label=".form-select-sm example">
-                <option selected>Patient</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Default checkbox
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                    Checked checkbox
-                </label>
+            <div class="col-md-6">
+                <label for="inputDate" class="form-label">Patient</label>
+                <select class="form-select form-select-sm w-50" aria-label=".form-select-sm example" th:field="*{patient}">
+                    <th:block th:each="patient : ${patients}">
+                        <option th:value="${patient.id}">[[${patient.nom}]]</option>
+                    </th:block>
+                </select>
             </div>
             <div class="input-group">
                 <span class="input-group-text">Notes</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <textarea class="form-control" aria-label="With textarea" th:field="*{note}"></textarea>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Enregistrer</button>

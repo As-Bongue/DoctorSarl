@@ -76,16 +76,6 @@ public class TestService {
 
     @Test
     @Rollback(false)
-    @Order(5)
-    public void ShowAllDossier(){
-        Service s = serviceRepository.findById(1).get();
-        List<Dossier> dossiers = s.getDossiers();
-
-        assertThat(dossiers).size().isGreaterThan(0);
-    }
-
-    @Test
-    @Rollback(false)
     @Order(6)
     public void deleteService(){
         Service s = serviceRepository.findById(1).get();

@@ -43,6 +43,9 @@
         <li>
             <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
+        <li>
+            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+        </li>
     </div>
 </section>
 
@@ -69,43 +72,51 @@
 
     <!--    links section-->
     <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <button type="button" class="btn btn-outline-success">Tous les categories</button>
+        <a th:href="@{/categorie_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{images/plus.png}"> Ajouter une categorie
+        </a>
     </div>
 
     <!-- dashboard section -->
-    <div class="formulaire text-center" style="margin: 3% 15% 8% 15%;">
-        <h1>Gestion des categories</h1>
+    <div class="formulaire text-center">
+        <div>
+            <h1>Liste des categories</h1>
+        </div>
 
-        <a class="h3" th:href="@{/categorie_create}">Ajouter une Categorie</a>
-
-<!--        message apres insertion-->
-        <div th:if="${message}" class="alert-success text-center">
+    <!--message apres insertion-->
+        <div th:if="${message}" class="alert-success text-center my-5">
             [[${message}]]
         </div>
 
-        <table class="table table-bordered">
-            <thead class="table-info">
+        <div class="tableau mx-5">
+            <table class="table table-bordered">
+                <thead class="table-info">
                 <tr>
                     <th>ID</th>
                     <th>CODE</th>
                     <th>NOM</th>
                     <th>ACTIONS</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <th:block th:each="categorie : ${categories}">
                     <tr>
                         <td>[[${categorie.id}]]</td>
                         <td>[[${categorie.code}]]</td>
                         <td>[[${categorie.nom}]]</td>
                         <td colspan="2">
-                            <a class="h4" th:href="@{'/categorie_create/' + ${categorie.id}}">Editer</a>
-                            <a class="h4" th:href="@{'/categorie_edite/' + ${categorie.id}}">Suprimer</a>
+                            <a class="h4" th:href="@{'/categorie_create/' + ${categorie.id}}" style="margin-right: 15%;">
+                                <img th:src="@{images/edit.png}" alt="suprimer" title="modifier">
+                            </a>
+                            <a class="h4" th:href="@{'/categorie_edite/' + ${categorie.id}}">
+                                <img th:src="@{images/delete.png}" alt="suprimer" title="suprimer">
+                            </a>
                         </td>
                     </tr>
                 </th:block>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </section>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editer Patient</title>
+    <title>Ajouter Patient</title>
     <!--        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
     <link rel="stylesheet" th:href="@{css/styl.css}" >
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
@@ -52,7 +52,7 @@
 <!-- interface section -->
 
 <section id="interface">
-    <div class="navigation" >
+    <div class="navigation">
         <div class="nav1">
             <div id="menu-btn">
                 <img th:src="@{images/menu.png}" alt="" class="i">
@@ -72,25 +72,55 @@
 
     <!--    links section-->
     <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <button type="button" class="btn btn-outline-success">Tous les categories</button>
+        <a th:href="@{/affectation_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{images/plus.png}"> Affecter un service
+        </a>
     </div>
-    <!-- form section -->
 
-    <div class="formulaire" style="margin: 3% 15% 8% 15%;">
-        <h1 class="text-center mb-5">Editer la categorie</h1>
-        <form class="row g-3 d-block">
-            <div class="col-md-6">
-                <label for="inputCode" class="form-label">Code</label>
-                <input type="email" class="form-control" id="inputCode">
-            </div>
-            <div class="col-md-6">
-                <label for="inputNom" class="form-label">Nom</label>
-                <input type="password" class="form-control" id="inputNom">
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
-            </div>
-        </form>
+    <!-- dashboard section -->
+    <div class="formulaire text-center">
+        <div>
+            <h1>Liste des services affectés</h1>
+        </div>
+
+        <!--        message apres insertion-->
+        <div th:if="${message}" class="alert-success text-center my-5">
+            [[${message}]]
+        </div>
+
+        <div class="tableau mx-5">
+            <table class="table table-bordered">
+                <thead class="table-info">
+                <tr>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th>SERVICE</th>
+                    <th>DOSSIER</th>
+                    <th>NOM PATIENT</th>
+                    <th>ACTIONS</th>
+                </tr>
+                </thead>
+                <tbody class="table-hover">
+                <th:block th:each="affectation : ${affectations}">
+                    <tr>
+                        <td>[[${affectation.id}]]</td>
+                        <td>[[${affectation.date}]]</td>
+                        <td>[[${affectation.service.nom}]]</td>
+                        <td>[[${affectation.dossier.code}]]</td>
+                        <td>[[${affectation.dossier.patient.nom}]]</td>
+                        <td colspan="2" >
+                            <a class="h4" th:href="@{'/affectation_edite/' + ${affectation.id}}" style="margin-right: 15%;">
+                                <img th:src="@{images/edit.png}" alt="modifier" title="modifier" >
+                            </a>
+                            <a class="h4" th:href="@{'/affectation_delete/' + ${affectation.id}}">
+                                <img th:src="@{images/delete.png}" alt="suprimer" title="suprimer">
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </section>

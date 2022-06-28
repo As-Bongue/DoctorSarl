@@ -40,12 +40,10 @@ public class testDossier {
         Patient p = patientRepository.findById(2).get();
         Service s = serviceRepository.findById(1).get();
 
-        Dossier d   = new Dossier("001","jhgjygyj", false, new Date(), p);
+        Dossier d   = new Dossier("001","jhgjygyj", new Date(), p);
 
         List<Service> s0 = new ArrayList<>();
         s0.add(s);
-
-        d.getServices().addAll(s0);
 
         dossierRepository.save(d);
         assertThat(d.getCode()).isEqualTo("001");
@@ -77,16 +75,6 @@ public class testDossier {
         d.setCode("005");
 
         assertThat(d.getCode()).isEqualTo("005");
-    }
-
-    @Test
-    @Rollback(false)
-    @Order(5)
-    public void showAllDossierService(){
-        Dossier d = dossierRepository.findById(1).get();
-        List<Service> services = d.getServices();
-
-        assertThat(services).size().isGreaterThan(0);
     }
 
     @Test

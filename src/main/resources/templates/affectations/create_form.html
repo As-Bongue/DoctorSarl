@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editer Patient</title>
+    <title>Ajouter Patient</title>
     <!--        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
     <link rel="stylesheet" th:href="@{css/styl.css}" >
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <script th:src="@{js/jquery-3.3.1.js}"></script>
+
 </head>
 
 <body>
@@ -72,20 +73,35 @@
 
     <!--    links section-->
     <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <button type="button" class="btn btn-outline-success">Tous les categories</button>
+        <a th:href="@{/affectations}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{images/list.png}"> Tous les affectations
+        </a>
     </div>
     <!-- form section -->
 
-    <div class="formulaire" style="margin: 3% 15% 8% 15%;">
-        <h1 class="text-center mb-5">Editer la categorie</h1>
-        <form class="row g-3 d-block">
+    <div class="formulaire" style="margin: 3% 15% 8% 15%;"  >
+        <h1 class="text-center mb-5">Affecter un service</h1>
+
+        <form class="row g-3 d-block" th:action="@{/affectation_create}" method="post" th:object="${affectation}">
             <div class="col-md-6">
-                <label for="inputCode" class="form-label">Code</label>
-                <input type="email" class="form-control" id="inputCode">
+                <label for="inputCode" class="form-label">Date</label>
+                <input type="date" class="form-control" id="inputCode" th:field="*{date}">
             </div>
             <div class="col-md-6">
-                <label for="inputNom" class="form-label">Nom</label>
-                <input type="password" class="form-control" id="inputNom">
+                <label for="inputDossier" class="form-label">Dossier</label>
+                <select th:field="*{dossier}" id="inputDossier">
+                    <th:block th:each="dossier : ${dossiers}">
+                        <option th:value="${dossier.id}">[[${dossier.patient.nom}]]</option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputService" class="form-label">Service</label>
+                <select th:field="*{service}" id="inputService">
+                    <th:block th:each="service : ${services}">
+                        <option th:value="${service.id}">[[${service.nom}]]</option>
+                    </th:block>
+                </select>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Enregistrer</button>

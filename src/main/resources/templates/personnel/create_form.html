@@ -15,7 +15,7 @@
 
 <!-- menu section -->
 
-    <section id="menu">
+<section id="menu">
     <div class="logo">
         <img src="" alt="">
         <h2>DoctorSarl</h2>
@@ -43,6 +43,9 @@
         <li>
             <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
+        <li>
+            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+        </li>
     </div>
 </section>
 
@@ -67,10 +70,13 @@
         </div>
     </div>
 
-    <!--    links section-->
+        <!--    links section-->
         <div class="liens" style="margin: 90px 15px 30px 15px;">
-            <button type="button" class="btn btn-outline-success">Tous le personnel</button>
+            <a th:href="@{/personnels}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+                <img th:src="@{images/list.png}"> Tous le personnel
+            </a>
         </div>
+
     <!-- form section -->
 
         <div class="formulaire" style="margin: 3% 15% 8% 15%;">

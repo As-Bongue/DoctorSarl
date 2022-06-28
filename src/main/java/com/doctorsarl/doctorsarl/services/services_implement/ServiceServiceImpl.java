@@ -50,10 +50,5 @@ public class ServiceServiceImpl implements ServiceService {
         return serviceRepository.findAll();
     }
 
-    @Override
-    public void addServiceToDossier(String nom, String code) {
-        Dossier dossier = dossierRepository.findByCode(code);
-        Service service = serviceRepository.findByNom(nom);
-        dossier.getServices().add(service);
-    }
+
 }

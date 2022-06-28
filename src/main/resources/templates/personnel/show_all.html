@@ -43,6 +43,9 @@
         <li>
             <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
+        <li>
+            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+        </li>
     </div>
 </section>
 
@@ -69,55 +72,63 @@
 
     <!--    links section-->
     <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <button type="button" class="btn btn-outline-success">Ajouter un personnel</button>
+        <a th:href="@{/personnel_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{images/plus.png}"> Ajouter un personnel
+        </a>
     </div>
 
     <!-- dashboard section -->
-    <div class="formulaire text-center" style="margin: 3% 5% 8% 5%;">
-        <h1>Liste du personnel medical</h1>
-
-        <a class="h3" th:href="@{/personnel_create}">Ajouter un personnel</a>
+    <div class="formulaire text-center">
+        <div>
+            <h1>Liste du personnel medical</h1>
+        </div>
 
         <!--        message apres insertion-->
-        <div th:if="${message}" class="alert-success text-center">
+        <div th:if="${message}" class="alert-success text-center my-5">
             [[${message}]]
         </div>
 
-        <table class="table table-bordered">
-            <thead class="table-info">
-            <tr>
-                <th>ID</th>
-                <th>NOM</th>
-                <th>PRENOM</th>
-                <th>TELEPHONE</th>
-                <th>EMAIL</th>
-                <th>ADRESSE</th>
-                <th>PROFESSION</th>
-                <th>VILLE</th>
-                <th>DISPONIBILITE</th>
-                <th>ACTIONS</th>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="personnel : ${personnels}">
+        <div class="tableau mx-5">
+            <table class="table table-bordered">
+                <thead class="table-info">
                 <tr>
-                    <td>[[${personnel.id}]]</td>
-                    <td>[[${personnel.nom}]]</td>
-                    <td>[[${personnel.prenom}]]</td>
-                    <td>[[${personnel.telephone}]]</td>
-                    <td>[[${personnel.email}]]</td>
-                    <td>[[${personnel.adresse}]]</td>
-                    <td>[[${personnel.profession}]]</td>
-                    <td>[[${personnel.ville}]]</td>
-                    <td>[[${personnel.disponibilite}]]</td>
-                    <td colspan="2">
-                        <a class="h4" th:href="@{'/personnel_create/' + ${personnel.id}}">Editer</a>
-                        <a class="h4" th:href="@{'/personnel_edit/' + ${personnel.id}}">Suprimer</a>
-                    </td>
+                    <th>ID</th>
+                    <th>NOM</th>
+                    <th>PRENOM</th>
+                    <th>TELEPHONE</th>
+                    <th>EMAIL</th>
+                    <th>ADRESSE</th>
+                    <th>PROFESSION</th>
+                    <th>VILLE</th>
+                    <th>DISPONIBILITE</th>
+                    <th>ACTIONS</th>
                 </tr>
-            </th:block>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <th:block th:each="personnel : ${personnels}">
+                    <tr>
+                        <td>[[${personnel.id}]]</td>
+                        <td>[[${personnel.nom}]]</td>
+                        <td>[[${personnel.prenom}]]</td>
+                        <td>[[${personnel.telephone}]]</td>
+                        <td>[[${personnel.email}]]</td>
+                        <td>[[${personnel.adresse}]]</td>
+                        <td>[[${personnel.profession}]]</td>
+                        <td>[[${personnel.ville}]]</td>
+                        <td>[[${personnel.disponibilite}]]</td>
+                        <td colspan="2">
+                            <a class="h4" th:href="@{'/personnel_edit/' + ${personnel.id}}" style="margin-right: 15%;">
+                                <img th:src="@{images/edit.png}" alt="editer" title="modifier">
+                            </a>
+                            <a class="h4" th:href="@{'/personnel_delete/' + ${personnel.id}}">
+                                <img th:src="@{images/delete.png}" alt="suprimer" title="suprimer">
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </section>
