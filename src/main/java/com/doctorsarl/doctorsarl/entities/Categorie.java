@@ -68,7 +68,6 @@ public class Categorie implements Serializable {
                 "id=" + id +
                 ", code='" + code + '\'' +
                 ", nom='" + nom + '\'' +
-                ", services=" + services +
                 '}';
     }
 }

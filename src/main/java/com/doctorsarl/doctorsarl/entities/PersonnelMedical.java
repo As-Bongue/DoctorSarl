@@ -14,8 +14,8 @@ public class PersonnelMedical extends Personne {
 
     private boolean disponibilite;
 
-    @OneToMany(mappedBy = "personne", cascade = CascadeType.ALL)
-    private List<Service> services;
+    @OneToMany(mappedBy = "personnelMedical")
+    private List<AffectationService> affectationServices;
 
     public PersonnelMedical() {
     }
@@ -51,12 +51,12 @@ public class PersonnelMedical extends Personne {
         this.disponibilite = disponibilite;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public List<AffectationService> getAffectationServices() {
+        return affectationServices;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setAffectationServices(List<AffectationService> affectationServices) {
+        this.affectationServices = affectationServices;
     }
 
     @Override
@@ -65,7 +65,6 @@ public class PersonnelMedical extends Personne {
                 "profession='" + profession + '\'' +
                 ", ville='" + ville + '\'' +
                 ", disponibilite=" + disponibilite +
-                ", services=" + services +
                 '}';
     }
 }

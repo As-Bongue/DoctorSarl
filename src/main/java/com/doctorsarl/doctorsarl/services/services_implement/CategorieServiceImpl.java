@@ -43,4 +43,5 @@ public class CategorieServiceImpl implements CategorieService {
     public List<Categorie> getAllCategorie() {
         return categorieRepository.findAll();
     }
+
 }

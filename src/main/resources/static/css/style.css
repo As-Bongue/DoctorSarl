@@ -1,10 +1,54 @@
 
-.welcome{
-    background-image: url("../images/as.jpg");
-    background-size: cover;
-    height: 500px;
+/*menu section*/
+.collapse{
+    justify-content: space-between;
+}
+.navbar-nav a{
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+.navbar-nav a:hover{
+    border-bottom: 2px solid lightseagreen;
+    transition: 0.3s ease;
+}
+.logo{
+    margin-top: 15px;
+}
+.logo a{
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 700;
+    color: black;
+}
+.logo a:hover{
+    color: black;
 }
 
-.welcome h1{
-    color: darkred;
+/*content section*/
+.card1{
+    justify-content: space-between;
+}
+.welcome0 .texte{
+    z-index: 1000;
+    margin: 26% 0 0 50%;
+    width: 100%;
+    font-size: 25px;
+    font-weight: 700;
+    opacity: 15;
+}
+
+.welcome{
+    z-index: -1;
+}
+
+.welcome .bg{
+    background-size: contain;
+}
+
+
+/* rgister page section*/
+
+.formulaire{
+    display: flex;
+    margin: 3% 15% 8% 15%;
 }

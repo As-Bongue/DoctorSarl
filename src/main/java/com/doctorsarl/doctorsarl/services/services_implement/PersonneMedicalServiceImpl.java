@@ -6,6 +6,7 @@ import com.doctorsarl.doctorsarl.services.interface_services.PersonnelMedicalSer
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,5 +42,27 @@ public class PersonneMedicalServiceImpl implements PersonnelMedicalService {
     @Override
     public List<PersonnelMedical> getAllPersonnelMedical() {
         return personnelMedicalRepository.findAll();
+    }
+
+    @Override
+    public List<PersonnelMedical> getAllPersonnelMedicalByDisponibilite() {
+        List<PersonnelMedical> personnelMedicals = new ArrayList<>();
+        List<PersonnelMedical> personnelMedicals1 = getAllPersonnelMedical();
+        for (PersonnelMedical personnel2:personnelMedicals1
+             ) {
+            if (personnel2.isDisponibilite())
+                personnelMedicals.add(personnel2);
+        }
+        return personnelMedicals;
+    }
+
+    @Override
+    public void updateDisponibilitePersonnel(int id) {
+        PersonnelMedical p = getPersonnelMedical(id);
+        if (p.isDisponibilite())
+            p.setDisponibilite(false);
+        else
+            p.setDisponibilite(true);
+        personnelMedicalRepository.save(p);
     }
 }

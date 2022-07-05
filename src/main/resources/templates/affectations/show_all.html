@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter Patient</title>
-    <!--        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
-    <link rel="stylesheet" th:href="@{css/styl.css}" >
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/styl.css}" >
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <script th:src="@{js/jquery-3.3.1.js}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
 </head>
 
 <body>
@@ -23,28 +25,25 @@
 
     <div class="items" style="margin-top: 70px;">
         <li>
-            <img th:src="@{images/home_24px.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Accueil</a>
+            <img th:src="@{/images/dashboard.png}" alt="" class="i"><a th:href="@{/dashboard}" style="font-size: 22px;">Dashboard</a>
         </li>
         <li>
-            <img th:src="@{images/dashboard.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Dashboard</a>
+            <img th:src="@{/images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
         </li>
         <li>
-            <img th:src="@{images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
+            <img th:src="@{/images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
         </li>
         <li>
-            <img th:src="@{images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
+            <img th:src="@{/images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
         </li>
         <li>
-            <img th:src="@{images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
+            <img th:src="@{/images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
         </li>
         <li>
-            <img th:src="@{images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
+            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
         <li>
-            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
-        </li>
-        <li>
-            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
         </li>
     </div>
 </section>
@@ -55,77 +54,82 @@
     <div class="navigation">
         <div class="nav1">
             <div id="menu-btn">
-                <img th:src="@{images/menu.png}" alt="" class="i">
+                <img th:src="@{/images/menu.png}" alt="" class="i">
             </div>
             <div class="search">
-                <a href="#"><img th:src="@{images/search.png}" alt="" class="i"></a>
+                <a href="#"><img th:src="@{/images/search.png}" alt="" class="i"></a>
                 <input type="text" placeholder="Search">
             </div>
         </div>
 
         <!-- profile -->
         <div class="profile">
-            <img th:src="@{images/bell.png}" alt="" class="i">
-            <img th:src="@{images/administrator.png}" alt="" class="i">
+            <img th:src="@{/images/bell.png}" alt="" class="i">
+            <img th:src="@{/images/administrator.png}" alt="" class="i">
         </div>
-    </div>
-
-    <!--    links section-->
-    <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <a th:href="@{/affectation_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
-            <img th:src="@{images/plus.png}"> Affecter un service
-        </a>
     </div>
 
     <!-- dashboard section -->
-    <div class="formulaire text-center">
-        <div>
-            <h1>Liste des services affectés</h1>
-        </div>
 
-        <!--        message apres insertion-->
-        <div th:if="${message}" class="alert-success text-center my-5">
-            [[${message}]]
+    <h3 class="name">
+        <!--    links section-->
+        <div class="liens">
+            <a th:href="@{/affectation_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+                <img th:src="@{/images/plus.png}"> Affecter un service
+            </a>
         </div>
+    </h3>
 
-        <div class="tableau mx-5">
-            <table class="table table-bordered">
-                <thead class="table-info">
-                <tr>
-                    <th>ID</th>
-                    <th>DATE</th>
-                    <th>SERVICE</th>
-                    <th>DOSSIER</th>
-                    <th>NOM PATIENT</th>
-                    <th>ACTIONS</th>
-                </tr>
-                </thead>
-                <tbody class="table-hover">
+    <div class="text-center">
+        <h2>Liste des categories de services</h2>
+    </div>
+
+    <div class="board">
+        <table id="dashboardTable" class="display text-center" width="100%">
+            <thead >
+            <tr>
+                <th>ID</th>
+                <th>DATE DEBUT</th>
+                <th>DATE FIN</th>
+                <th>SERVICE</th>
+                <th>DOSSIER</th>
+                <th>NOM PATIENT</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody class="table-hover">
                 <th:block th:each="affectation : ${affectations}">
                     <tr>
-                        <td>[[${affectation.id}]]</td>
-                        <td>[[${affectation.date}]]</td>
-                        <td>[[${affectation.service.nom}]]</td>
-                        <td>[[${affectation.dossier.code}]]</td>
-                        <td>[[${affectation.dossier.patient.nom}]]</td>
-                        <td colspan="2" >
-                            <a class="h4" th:href="@{'/affectation_edite/' + ${affectation.id}}" style="margin-right: 15%;">
-                                <img th:src="@{images/edit.png}" alt="modifier" title="modifier" >
+                        <td th:text="${affectation.id}"></td>
+                        <td>
+                            <a th:href="@{'/affectation_show/' + ${affectation.id}}">
+                                [[${affectation.date_debut}]]
                             </a>
-                            <a class="h4" th:href="@{'/affectation_delete/' + ${affectation.id}}">
-                                <img th:src="@{images/delete.png}" alt="suprimer" title="suprimer">
+                        </td>
+                        <td th:text="${affectation.date_fin}"></td>
+                        <td th:text="${affectation.service.nom}"></td>
+                        <td th:text="${affectation.dossier.code}"></td>
+                        <td th:text="${affectation.dossier.patient.nom}"></td>
+                        <td colspan="2" >
+                            <a th:href="@{'/affectation_edit/' + ${affectation.id}}" style="margin-right: 15%;">
+                                <img th:src="@{/images/edit.png}" alt="modifier" title="modifier" >
+                            </a>
+                            <a th:href="@{'/affectation_delete/' + ${affectation.id}}">
+                                <img th:src="@{/images/delete.png}" alt="suprimer" title="suprimer">
                             </a>
                         </td>
                     </tr>
                 </th:block>
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
 
 </section>
 
-<script th:src="@{js/index.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+
+<script th:src="@{/js/index.js}"></script>
 
 </body>
 </html>

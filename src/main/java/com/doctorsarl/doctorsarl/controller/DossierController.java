@@ -1,10 +1,12 @@
 package com.doctorsarl.doctorsarl.controller;
 
+import com.doctorsarl.doctorsarl.entities.AffectationService;
 import com.doctorsarl.doctorsarl.entities.Dossier;
 import com.doctorsarl.doctorsarl.entities.Patient;
 import com.doctorsarl.doctorsarl.services.interface_services.DossierService;
 import com.doctorsarl.doctorsarl.services.interface_services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,9 @@ public class DossierController {
 
     @Autowired
     private PatientService patientService;
+
+    @Autowired
+    private com.doctorsarl.doctorsarl.services.interface_services.AffectationService affectationService;
 
     @GetMapping("/dossiers")
     public String showAllDossiers(Model model){
@@ -53,9 +58,18 @@ public class DossierController {
         return "dossier/create_form";
     }
 
+    @GetMapping("/dossier_show/{id}")
+    public String showDossierDetail(@PathVariable("id") int id, Model model){
+        Dossier dossier = dossierService.getDossier(id);
+        List<AffectationService> affectationServiceLists = affectationService.getAllAffectationsByDossier(dossier);
+        model.addAttribute("dossier", dossier);
+        model.addAttribute("affectationServiceLists", affectationServiceLists);
+        return "dossier/show";
+    }
+
     @GetMapping("/dossier_delete/{id}")
     public String deleteDossier(@PathVariable("id") int id){
         dossierService.deleteById(id);
-        return "redirect/dossiers";
+        return "redirect:/dossiers";
     }
 }

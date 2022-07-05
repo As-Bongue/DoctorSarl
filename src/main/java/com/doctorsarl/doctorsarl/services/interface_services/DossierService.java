@@ -1,6 +1,7 @@
 package com.doctorsarl.doctorsarl.services.interface_services;
 
 import com.doctorsarl.doctorsarl.entities.Dossier;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-<!--    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
-    <link rel="stylesheet" th:href="@{css/styl.css}" >
+    <link rel="stylesheet" th:href="@{/css/styl.css}" >
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <script th:src="@{js/jquery-3.3.1.js}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
 </head>
 
 <body>
@@ -23,28 +25,25 @@
 
     <div class="items" style="margin-top: 70px;">
         <li>
-            <img th:src="@{images/home_24px.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Accueil</a>
+            <img th:src="@{/images/dashboard.png}" alt="" class="i"><a th:href="@{/dashboard}" style="font-size: 22px;">Dashboard</a>
         </li>
         <li>
-            <img th:src="@{images/dashboard.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Dashboard</a>
+            <img th:src="@{/images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
         </li>
         <li>
-            <img th:src="@{images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
+            <img th:src="@{/images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
         </li>
         <li>
-            <img th:src="@{images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
+            <img th:src="@{/images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
         </li>
         <li>
-            <img th:src="@{images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
+            <img th:src="@{/images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
         </li>
         <li>
-            <img th:src="@{images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
+            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
         <li>
-            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
-        </li>
-        <li>
-            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
         </li>
     </div>
 </section>
@@ -55,85 +54,84 @@
     <div class="navigation">
         <div class="nav1">
             <div id="menu-btn">
-                <img th:src="@{images/menu.png}" alt="" class="i">
+                <img th:src="@{/images/menu.png}" alt="" class="i">
             </div>
             <div class="search">
-                <a href="#"><img th:src="@{images/search.png}" alt="" class="i"></a>
+                <a href="#"><img th:src="@{/images/search.png}" alt="" class="i"></a>
                 <input type="text" placeholder="Search">
             </div>
         </div>
 
         <!-- profile -->
         <div class="profile">
-            <img th:src="@{images/bell.png}" alt="" class="i">
-            <img th:src="@{images/administrator.png}" alt="" class="i">
+            <img th:src="@{/images/bell.png}" alt="" class="i">
+            <img th:src="@{/images/administrator.png}" alt="" class="i">
         </div>
-    </div>
-
-    <!--    links section-->
-    <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <a th:href="@{/personnel_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
-            <img th:src="@{images/plus.png}"> Ajouter un personnel
-        </a>
     </div>
 
     <!-- dashboard section -->
-    <div class="formulaire text-center">
-        <div>
-            <h1>Liste du personnel medical</h1>
-        </div>
 
-        <!--        message apres insertion-->
-        <div th:if="${message}" class="alert-success text-center my-5">
-            [[${message}]]
+    <h3 class="name">
+        <!--    links section-->
+        <div class="liens">
+            <a th:href="@{/personnel_create}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+                <img th:src="@{/images/plus.png}"> Ajouter un personnel
+            </a>
         </div>
+    </h3>
 
-        <div class="tableau mx-5">
-            <table class="table table-bordered">
-                <thead class="table-info">
+    <div class="text-center">
+        <h2>Liste du personnel medical</h2>
+    </div>
+
+    <div class="board">
+        <table id="dashboardTable" class="display text-center" width="100%">
+            <thead >
+            <tr>
+                <th>ID</th>
+                <th>NOM</th>
+                <th>TELEPHONE</th>
+                <th>PROFESSION</th>
+                <th>DISPONIBILITE</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="personnel : ${personnels}">
                 <tr>
-                    <th>ID</th>
-                    <th>NOM</th>
-                    <th>PRENOM</th>
-                    <th>TELEPHONE</th>
-                    <th>EMAIL</th>
-                    <th>ADRESSE</th>
-                    <th>PROFESSION</th>
-                    <th>VILLE</th>
-                    <th>DISPONIBILITE</th>
-                    <th>ACTIONS</th>
+                    <td th:text="${personnel.id}"></td>
+                    <td>
+                        <a th:href="@{'/personnel_detail/' + ${personnel.id}}">
+                            [[${personnel.nom}]]
+                        </a>
+                    </td>
+                    <td th:text="${personnel.telephone}"></td>
+                    <td th:text="${personnel.profession}"></td>
+                    <td th:text="${personnel.disponibilite} ? 'disponible' : 'indisponible' " id="dispo"></td>
+                    <td colspan="3">
+                        <a class="h4" th:href="@{'/personnel_disponibilite/' + ${personnel.id}}" style="margin-right: 15%;">
+                            <img th:src="${personnel.disponibilite}? @{/images/switch.png} : @{/images/switch1.png}"
+                                 alt="disponibilte" title="modifier la disponibilite">
+                        </a>
+                        <a th:href="@{'/personnel_edit/' + ${personnel.id}}" style="margin-right: 15%;">
+                            <img th:src="@{/images/edit.png}" alt="editer" title="modifier">
+                        </a>
+                        <a th:href="@{'/personnel_delete/' + ${personnel.id}}">
+                            <img th:src="@{/images/delete.png}" alt="suprimer" title="suprimer">
+                        </a>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                <th:block th:each="personnel : ${personnels}">
-                    <tr>
-                        <td>[[${personnel.id}]]</td>
-                        <td>[[${personnel.nom}]]</td>
-                        <td>[[${personnel.prenom}]]</td>
-                        <td>[[${personnel.telephone}]]</td>
-                        <td>[[${personnel.email}]]</td>
-                        <td>[[${personnel.adresse}]]</td>
-                        <td>[[${personnel.profession}]]</td>
-                        <td>[[${personnel.ville}]]</td>
-                        <td>[[${personnel.disponibilite}]]</td>
-                        <td colspan="2">
-                            <a class="h4" th:href="@{'/personnel_edit/' + ${personnel.id}}" style="margin-right: 15%;">
-                                <img th:src="@{images/edit.png}" alt="editer" title="modifier">
-                            </a>
-                            <a class="h4" th:href="@{'/personnel_delete/' + ${personnel.id}}">
-                                <img th:src="@{images/delete.png}" alt="suprimer" title="suprimer">
-                            </a>
-                        </td>
-                    </tr>
-                </th:block>
-                </tbody>
-            </table>
-        </div>
+            </th:block>
+            </tbody>
+        </table>
     </div>
 
 </section>
 
-<script th:src="@{js/index.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+
+<script th:src="@{/js/index.js}"></script>
 
 </body>
 </html>

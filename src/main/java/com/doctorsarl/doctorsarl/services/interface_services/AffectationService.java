@@ -1,6 +1,9 @@
 package com.doctorsarl.doctorsarl.services.interface_services;
 
 
+import com.doctorsarl.doctorsarl.entities.Dossier;
+import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
+
 import java.util.List;
 
 public interface AffectationService {
@@ -11,4 +14,6 @@ public interface AffectationService {
     void deleteById(int id);
     com.doctorsarl.doctorsarl.entities.AffectationService getAffectation(int id);
     List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectation();
+    List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationsByDossier(Dossier dossier);
+    List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationsByPersonnel(PersonnelMedical personnelMedical);
 }

@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // specifier que la classe possede des classes derivées
 @DiscriminatorColumn(name = "type") // colone qui pecifie le type de personne
-public abstract class Personne implements Serializable {
+public class Personne implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public abstract class Personne implements Serializable {
     private String adresse;
     @Column(nullable = false, unique = true)
     private String telephone;
-    @Column(nullable = false, unique = true, length = 25)
+    @Column(nullable = false, unique = false, length = 25)
     private  String email;
 
     private String password;

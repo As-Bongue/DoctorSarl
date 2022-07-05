@@ -58,15 +58,15 @@ public class testPersonnelMedica {
         assertThat(p.isDisponibilite()).isEqualTo(true);
     }
 
-    @Test
-    @Rollback(false)
-    @Order(5)
-    public void showAllPersonnelServices(){
-        PersonnelMedical p = personnelMedicalRepository.findById(1).get();
-        List<Service> services = p.getServices();
-
-        assertThat(services).size().isGreaterThan(0);
-    }
+//    @Test
+//    @Rollback(false)
+//    @Order(5)
+//    public void showAllPersonnelServices(){
+//        PersonnelMedical p = personnelMedicalRepository.findById(1).get();
+//        List<Service> services = p.getServices();
+//
+//        assertThat(services).size().isGreaterThan(0);
+//    }
 
     @Test
     @Rollback

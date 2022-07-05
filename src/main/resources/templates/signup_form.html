@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" >
+</head>
+<body>
+        <div class="text-center my-5">
+            <h1>Veuillez remplir vos informations</h1>
+        </div>
+
+        <div class="formulaire">
+            <form class="row g-3 d-block" th:action="@{/register}" method="post" th:object="${user}">
+                <div class="col-md-6">
+                    <label for="inputNom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="inputNom" th:field="*{nom}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPrenom" class="form-label">Prenom</label>
+                    <input type="text" class="form-control" id="inputPrenom" th:field="*{prenom}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputEmail" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="exemple@gmail.com" th:field="*{email}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputAdresse" class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="inputAdresse" placeholder="exp:DOUALA-YASSA" th:field="*{adresse}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputTel" class="form-label">Telephone</label>
+                    <input type="tel" class="form-control" id="inputTel" placeholder="numero de telephone" th:field="*{telephone}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="entrer un mot de passe" th:field="*{password}">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary fw-bold">Enregistrer</button>
+                </div>
+            </form>
+
+            <div class="register_image row g-3">
+                <img th:src="@{/images/doctor2.jpg}">
+            </div>
+        </div>
+</body>
+</html>

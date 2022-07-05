@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter Patient</title>
     <!--        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>-->
-    <link rel="stylesheet" th:href="@{css/styl.css}" >
+    <link rel="stylesheet" th:href="@{/css/styl.css}" >
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <script th:src="@{js/jquery-3.3.1.js}"></script>
-
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
 
 <body>
@@ -24,28 +23,28 @@
 
     <div class="items" style="margin-top: 70px;">
         <li>
-            <img th:src="@{images/home_24px.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Accueil</a>
+            <img th:src="@{/images/home_24px.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Accueil</a>
         </li>
         <li>
-            <img th:src="@{images/dashboard.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Dashboard</a>
+            <img th:src="@{/images/dashboard.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Dashboard</a>
         </li>
         <li>
-            <img th:src="@{images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
+            <img th:src="@{/images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
         </li>
         <li>
-            <img th:src="@{images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
+            <img th:src="@{/images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
         </li>
         <li>
-            <img th:src="@{images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
+            <img th:src="@{/images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
         </li>
         <li>
-            <img th:src="@{images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
+            <img th:src="@{/images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
         </li>
         <li>
-            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
+            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
         </li>
         <li>
-            <img th:src="@{images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
+            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
         </li>
     </div>
 </section>
@@ -56,44 +55,75 @@
     <div class="navigation" >
         <div class="nav1">
             <div id="menu-btn">
-                <img th:src="@{images/menu.png}" alt="" class="i">
+                <img th:src="@{/images/menu.png}" alt="" class="i">
             </div>
             <div class="search">
-                <a href="#"><img th:src="@{images/search.png}" alt="" class="i"></a>
+                <a href="#"><img th:src="@{/images/search.png}" alt="" class="i"></a>
                 <input type="text" placeholder="Search">
             </div>
         </div>
 
         <!-- profile -->
         <div class="profile">
-            <img th:src="@{images/bell.png}" alt="" class="i">
-            <img th:src="@{images/administrator.png}" alt="" class="i">
+            <img th:src="@{/images/bell.png}" alt="" class="i">
+            <img th:src="@{/images/administrator.png}" alt="" class="i">
         </div>
     </div>
 
     <!--    links section-->
     <div class="liens" style="margin: 90px 15px 30px 15px;">
-        <button type="button" class="btn btn-outline-success">Tous les categories</button>
+        <a th:href="@{/affectations}" class="btn btn-primary btn-lg " tabindex="-1" role="button" >
+            <img th:src="@{/images/list.png}"> Tous les affections
+        </a>
     </div>
-    <!-- form section -->
 
     <div class="formulaire" style="margin: 3% 15% 8% 15%;">
-        <h1 class="text-center mb-5">Ajouter une categorie</h1>
+        <h1 class="text-center mb-5" th:text=" 'Affectation #' +${affectation.id}"> </h1>
 
-        <form class="row g-3 d-block" th:action="@{/affectation_create}" method="post" th:object="${affectation}">
-            <div class="col-md-6">
-                <label for="inputCode" class="form-label">Code</label>
-                <input type="datetime-local" class="form-control" id="inputCode" th:field="*{date}">
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
-            </div>
-        </form>
+        <div class="detail_dossier my-5 mx-5">
+            <p>
+                <span class="fw-bold mx-5">Date debut : </span>
+                <span th:text="${affectation.date_debut}"></span><br>
+                <span class="fw-bold mx-5">Date de fin : </span>
+                <span th:text="${affectation.date_fin}"></span><br>
+                <span class="fw-bold mx-5">Etat : </span>
+                <span th:text="${affectation.etat}"></span><br>
+                <span class="fw-bold mx-5">Description : </span>
+                <span th:text="${affectation.commentaire}"></span>
+            </p>
+
+            <p>
+                <span class="fw-bold mx-5">Service : </span>
+                <span th:text="${affectation.service.nom}"></span><br>
+                <span class="fw-bold mx-5">prix : </span>
+                <span th:text="${affectation.service.prix}"></span><br>
+                <span class="fw-bold mx-5">Commentaire : </span>
+                <span th:text="${affectation.commentaire}"></span>
+            </p>
+
+            <p>
+                <span class="fw-bold mx-5">Nom du patient : </span>
+                <span th:text="${affectation.dossier.patient.nom}"></span><br>
+                <span class="fw-bold mx-5">Prenom : </span>
+                <span th:text="${affectation.dossier.patient.prenom}"></span><br>
+                <span class="fw-bold mx-5">Numero de telephone : </span>
+                <span th:text="${affectation.dossier.patient.telephone}"></span><br>
+                <span class="fw-bold mx-5">Adresse Mail : </span>
+                <span th:text="${affectation.dossier.patient.email}"></span><br>
+                <span class="fw-bold mx-5">Sexe du patient : </span>
+                <span th:text="${affectation.dossier.patient.sexe == m}? 'masculin' : 'feminin' "> </span><br>
+                <span class="fw-bold mx-5">Age du patient : </span>
+                <span th:text="${affectation.dossier.patient.age} + 'ans'">Age du patient : </span><br>
+                <span class="fw-bold mx-5">Adresse du patient : </span>
+                <span th:text=" ${affectation.dossier.patient.adresse}"></span><br>
+            </p><br>
+        </div>
+
     </div>
 
 </section>
 
-<script th:src="@{js/index.js}"></script>
+<script th:src="@{/js/index.js}"></script>
 
 </body>
 </html>

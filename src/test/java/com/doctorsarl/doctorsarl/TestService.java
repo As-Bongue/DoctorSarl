@@ -32,19 +32,19 @@ public class TestService {
     @Autowired
     private CategorieRepository categorieRepository;
 
-    @Test
-    @Rollback(false)
-    @Order(1)
-    public void testCreateService(){
-
-        Categorie c = categorieRepository.findById(1).get();
-
-        PersonnelMedical p = personnelMedicalRepository.findById(1).get();
-
-        Service serv = serviceRepository.save(new Service("001", "maternito", 2500, p, c));
-
-        assertThat(serv.getId()).isGreaterThan(0);
-    }
+//    @Test
+//    @Rollback(false)
+//    @Order(1)
+//    public void testCreateService(){
+//
+//        Categorie c = categorieRepository.findById(1).get();
+//
+//        PersonnelMedical p = personnelMedicalRepository.findById(1).get();
+//
+//        Service serv = serviceRepository.save(new Service("001", "maternito", 2500, p, c));
+//
+//        assertThat(serv.getId()).isGreaterThan(0);
+//    }
 
     @Test
     @Rollback(false)

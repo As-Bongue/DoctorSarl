@@ -1,8 +1,9 @@
 package com.doctorsarl.doctorsarl.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,20 +20,26 @@ public class Dossier implements Serializable {
     private String note;
     private  boolean statut;
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_creation;
 
     @ManyToOne
     private Patient patient;
 
+    @OneToMany
+    private List<AffectationService> affectationService;
+
     public Dossier() {
     }
 
-    public Dossier(String code, String note, Date date_creation, Patient patient) {
+    public Dossier(String code, String note, boolean statut, Date date_creation, Patient patient, List<AffectationService> affectationService) {
+
         this.code = code;
         this.note = note;
-        this.statut = true;
+        this.statut = statut;
         this.date_creation = date_creation;
         this.patient = patient;
+        this.affectationService = affectationService;
     }
 
     public int getId() {
@@ -83,6 +90,14 @@ public class Dossier implements Serializable {
         this.patient = patient;
     }
 
+    public List<AffectationService> getAffectationService() {
+        return affectationService;
+    }
+
+    public void setAffectationService(List<AffectationService> affectationService) {
+        this.affectationService = affectationService;
+    }
+
     @Override
     public String toString() {
         return "Dossier{" +
@@ -91,7 +106,8 @@ public class Dossier implements Serializable {
                 ", note='" + note + '\'' +
                 ", statut=" + statut +
                 ", date_creation=" + date_creation +
-                ", patient=" + patient +
                 '}';
     }
+
+
 }

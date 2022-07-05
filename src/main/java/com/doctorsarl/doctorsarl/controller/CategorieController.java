@@ -3,6 +3,7 @@ package com.doctorsarl.doctorsarl.controller;
 import com.doctorsarl.doctorsarl.entities.Categorie;
 import com.doctorsarl.doctorsarl.services.interface_services.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +50,7 @@ public class CategorieController {
     @GetMapping("/categorie_delete/{id}")
     public String deleteCategorie(@PathVariable("id") int id){
         categorieService.deleteById(id);
-        return "redirect:/catrgories";
+        return "redirect:/categories";
     }
 
 }

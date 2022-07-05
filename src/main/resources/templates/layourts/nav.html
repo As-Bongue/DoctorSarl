@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top mb-5" th:fragment="nav">
-    <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">MyDoctor</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">A propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-                <li class="nav-item my-1 list-unstyled">
-                    <a class="nav-link bg-info text-dark rounded-pill mx-5" href="#">Inscription</a>
-                </li>
-                <li class="nav-item my-1 list-unstyled">
-                    <a class="nav-link bg-success text-white-50 rounded-pill" href="#">Connection</a>
-                </li>
+    <div class="container-fluid py-3 px-5" th:fragment="nav">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="logo">
+                    <a href="#">DOCTOR SARL</a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="menu-option">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                <div class="navbar-nav mx-5">
+                                    <a class="nav-link mx-5" aria-current="page" href="#">Accueil</a>
+                                    <a class="nav-link mx-5" href="#">A propos</a>
+                                    <a class="nav-link mx-5" href="#">Services</a>
+                                    <a class="nav-link mx-5" href="#">Contact</a>
+                                </div>
+                                <div class="btn">
+                                    <a th:href="@{/register}" class="btn btn-primary">Demander service</a>
+                                    <a th:href="@{/login}" class="btn btn-success">Se connecter</a>
+                                </div>
+                            </div>
+                    </nav>
+                </div>
             </div>
         </div>
-    </nav>
-</div>
+    </div>
 
 </body>
 </html>

@@ -53,7 +53,6 @@ public class Patient extends Personne {
         return "Patient{" +
                 "age=" + age +
                 ", sexe=" + sexe +
-                ", dossiers=" + dossiers +
                 '}';
     }
 }

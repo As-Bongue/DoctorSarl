@@ -43,13 +43,13 @@ body{
 #menu .items li{
   list-style: none;
   padding: 15px 0;
-  transition: 0.3s ease;  
+  transition: 0.3s ease;
 }
 
 
-#menu .items li:nth-child(1) {
-  border-left: 4px solid #fff;
-}
+/*#menu .items li:nth-child(1) {*/
+/*    border-left: 4px solid #fff;*/
+/*}*/
 
 #menu .items li:hover{
   background: #253047;
@@ -85,13 +85,12 @@ body{
 #interface{
   width: calc(100% - 300px); /* 100% de la page pour l'interface - la largeur du menu menu*/
   margin-left: 300px;
-  position: relative;
 }
 
 .nav1 {
   display: flex;
   justify-content: flex-start;
-  align-items:center; 
+  align-items:center;
 }
 
 #menu-btn{
@@ -100,7 +99,6 @@ body{
   font-size: 20px;
   cursor: pointer;
   margin-right: 20px;
-
 }
 
 #interface .navigation{
@@ -152,80 +150,116 @@ body{
   border-radius: 50%;
 }
 
-/* count section */
-/*.name{*/
-/*  color: #444a53;*/
-/*  padding: 30px 30px 0 30px;*/
-/*  font-size: 24px;*/
-/*  font-weight: 700;*/
-/*  margin-top: 70px;*/
-/*}*/
+#interface .navigation .profile ul{
+  margin-top: 15px;
+}
 
-/*.values{*/
-/*  padding: 30px 30px 0 30px;*/
-/*  display: flex;*/
-/*  justify-content: space-between;*/
-/*  align-items: center;*/
-/*  flex-wrap: wrap;*/
-/*}*/
+#logout{
+  cursor: pointer;
+}
 
-/*.values .val-box{*/
-/*  background: #fff;*/
-/*  width: 235px;*/
-/*  padding: 16px 20px;*/
-/*  border-radius: 5px;*/
-/*  display: flex;*/
-/*  justify-content: flex-start;*/
-/*  align-items: center;*/
-/*}*/
+#interface .navigation .profile #decon{
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  top: 60px;
+  right: 25px;
+  padding-right: 25px;
+  background: aliceblue;
+}
 
-/*.values .val-box .i {*/
-/*    font-size: 25px;*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    line-height: 60px;*/
-/*    border-radius: 50%;*/
-/*    text-align: center;*/
-/*    color: #fff;*/
-/*    background: #253047;*/
-/*    margin-right: 15px;*/
-/*}*/
+#interface .navigation .profile #decon ul li{
+  list-style-type: none;
+}
+#interface .navigation .profile #decon ul li a{
+  text-decoration: none;
+  color: red;
+}
 
-/*.values .val-box h3{*/
-/*  font-size: 18px;*/
-/*  font-weight: 600;*/
-/*}*/
+#interface .navigation .profile #decon.show{
+  display: block;
+}
 
-/*.values .val-box span{*/
-/*  font-size: 15px;*/
-/*  color: #828997;*/
-/*}*/
+/*table section*/
+#dispo{
+  cursor: pointer;
+}
 
-/*.values .val-box:nth-child(1) .i{*/
-/*  background: #7b74ac;*/
-/*}*/
 
-/*.values .val-box:nth-child(2) .i{*/
-/*  background: #5c8af0;*/
-/*}*/
+/*count section */
+.name{
+  color: #444a53;
+  padding: 30px 30px 0 30px;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 70px;
+}
 
-/*.values .val-box:nth-child(3) .i{*/
-/*  background: #e45d99;*/
-/*}*/
+.values{
+  padding: 30px 30px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-/*.values .val-box:nth-child(4) .i{*/
-/*  background: #74daec;*/
-/*}*/
+.values .val-box{
+  background: #fff;
+  width: 235px;
+  padding: 16px 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.values .val-box .i {
+  font-size: 25px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  background: #253047;
+  margin-right: 15px;
+}
+
+.values .val-box h3{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.values .val-box span{
+  font-size: 15px;
+  color: #828997;
+}
+
+.values .val-box:nth-child(1) .i{
+  background: #7b74ac;
+}
+
+.values .val-box:nth-child(2) .i{
+  background: #5c8af0;
+}
+
+.values .val-box:nth-child(3) .i{
+  background: #e45d99;
+}
+
+.values .val-box:nth-child(4) .i{
+  background: #74daec;
+}
 
 /* boad section */
 
-/*.board{*/
-/*  width: 94%;*/
-/*  margin: 30px 0 30px 30px;*/
-/*  overflow: auto;*/
-/*  background: #fff;*/
-/*  border-radius: 8px;*/
-/*}*/
+.board{
+  width: 94%;
+  margin: 30px 0 30px 30px;
+  overflow: auto;
+  background: #fff;
+  border-radius: 8px;
+}
 
 /*.board img{*/
 /*  width: 45px;*/
@@ -235,10 +269,10 @@ body{
 /*  margin-right: 15px;*/
 /*}*/
 
-/*.board h5{*/
-/*  font-weight: 600;*/
-/*  font-size: 14px;*/
-/*}*/
+.board h5{
+  font-weight: 600;
+  font-size: 14px;
+}
 
 /*.board p{*/
 /*  font-weight: 400;*/
@@ -253,26 +287,39 @@ body{
 /*  text-align: start;*/
 /*}*/
 
-/*table {*/
-/*  border-collapse: collapse;*/
-/*}*/
+table {
+  border-collapse: collapse;
+}
 
-/*table tr{*/
-/*  border-bottom: 1px solid #f3eef0f3;*/
-/*}*/
+table tr{
+  border-bottom: 1px solid black;
+}
 
-/*thead td{*/
-/*  font-size: 14px;*/
-/*  text-transform: uppercase;*/
-/*  font-weight: 400;*/
-/*  background: #f9fafb;*/
-/*  text-align: start;*/
-/*  padding: 15px;*/
-/*}*/
+thead th{
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: #f9fafb;
+  /*text-align: start;*/
+  padding: 5px;
+}
 
-/*tbody tr td{*/
-/*  padding: 10px 15px;*/
-/*}*/
+tbody tr td{
+  padding: 10px 15px;
+}
+tbody tr{
+  border-bottom: 1px solid grey;
+}
+
+tbody tr td a{
+  text-decoration: none;
+  color: black;
+}
+
+.infos{
+  display: flex;
+  justify-content: space-between;
+}
 
 /*.active p{*/
 /*  background: #d7fada;*/
@@ -297,9 +344,6 @@ body{
 /*  font-weight: 600;*/
 /*}*/
 
-/*.fleche{*/
-/*  float: right;*/
-/*}*/
 
 
 
@@ -309,43 +353,43 @@ body{
     position: fixed;
     left: -270px;
     transition: 00.3s ease;
-}
+  }
 
-#menu-btn{
-  display: initial;
-}
+  #menu-btn{
+    display: initial;
+  }
 
-#menu.active{            
-  left: 0px;
-}
+  #menu.active{
+    left: 0px;
+  }
 
-#menu.active~#interface{
-  width: calc(100% - 270px);
-  margin-left: 270px;
-  transition: 00.3s ease;
-}
+  #menu.active~#interface{
+    width: calc(100% - 270px);
+    margin-left: 270px;
+    transition: 00.3s ease;
+  }
 
-#interface {
-  width: 100%;
-  margin-left: 0px;
-  display: inline-block;
-  transition: 00.3s ease;
-}
+  #interface {
+    width: 100%;
+    margin-left: 0px;
+    display: inline-block;
+    transition: 00.3s ease;
+  }
 
-#interface .navigation {
-  width: 100%;
-}
+  #interface .navigation {
+    width: 100%;
+  }
 
-.values {
-  padding: 30px 30px 0 30px;
- justify-content: flex-start;
-}
+  .values {
+    padding: 30px 30px 0 30px;
+    justify-content: flex-start;
+  }
 
-.values .val-box {
-  padding: 16px 20px;
-  margin: 10px 20px 10px 0;
-  width: 46%;
-}
+  .values .val-box {
+    padding: 16px 20px;
+    margin: 10px 20px 10px 0;
+    width: 46%;
+  }
 
 }
 
@@ -363,29 +407,20 @@ body{
   .name {
     padding: 30px 15px 0 15px;
   }
-  
+
   .values {
     padding: 30px 15px 0 15px;
- }
+  }
 
- .values .val-box {
-  width: 100%;
-  margin: 8px 0;
- }
+  .values .val-box {
+    width: 100%;
+    margin: 8px 0;
+  }
 
- .board {
-  margin: 30px 0 15px 15px;
+  .board {
+    margin: 30px 0 15px 15px;
   }
 
 }
 
-
-/*personnel section css*/
-
-/*form section*/
-/*  #interface .formulaire{*/
-/*    position: absolute;*/
-/*    margin: 50px 15px 20px 15px;*/
-/*    background: darkred;*/
-/*  }*/
 

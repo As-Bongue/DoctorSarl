@@ -12,4 +12,6 @@ public interface PersonnelMedicalService {
     void deletePersonnelById(int id);
     PersonnelMedical getPersonnelMedical(int id);
     List<PersonnelMedical> getAllPersonnelMedical();
+    List<PersonnelMedical> getAllPersonnelMedicalByDisponibilite();
+    void updateDisponibilitePersonnel(int id);
 }
