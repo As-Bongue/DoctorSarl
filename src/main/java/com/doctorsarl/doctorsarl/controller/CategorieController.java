@@ -36,7 +36,7 @@ public class CategorieController {
     @PostMapping("/categorie_create")
     public String saveCategorie(Categorie categorie, RedirectAttributes ra){
         categorieService.saveCategorie(categorie);
-        ra.addFlashAttribute("message", "Categorie enregistrer avec sucess");
+        ra.addFlashAttribute("message", "blaaaaaaaaa");
         return "redirect:/categories";
     }
 

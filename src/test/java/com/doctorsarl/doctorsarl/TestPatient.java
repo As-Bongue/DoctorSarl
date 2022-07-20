@@ -21,14 +21,14 @@ public class TestPatient {
     @Autowired
     PatientRepository patientRepository;
 
-    @Test
-    @Rollback(false)
-    @Order(1)
-    public void testCreatePatient(){
-        Patient p = new Patient("as", "bbbbb", "casa", "6554875552", "tem45j@gmail.com", "", 15, 'f');
-        patientRepository.save(p);
-        assertThat(p.getId()).isGreaterThan(0);
-    }
+//    @Test
+//    @Rollback(false)
+//    @Order(1)
+//    public void testCreatePatient(){
+//        Patient p = new Patient("as", "bbbbb", "casa", "6554875552", "tem45j@gmail.com", "", 15, 'f');
+//        patientRepository.save(p);
+//        assertThat(p.getId()).isGreaterThan(0);
+//    }
 
     @Test
     @Rollback(false)

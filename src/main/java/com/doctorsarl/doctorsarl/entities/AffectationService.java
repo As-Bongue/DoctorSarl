@@ -37,10 +37,10 @@ public class AffectationService {
     public AffectationService() {
     }
 
-    public AffectationService(Date date_debut, Date date_fin, String etat, String commentaire, Dossier dossier, Service service, PersonnelMedical personnelMedical) {
+    public AffectationService(Date date_debut, Date date_fin, String commentaire, Dossier dossier, Service service, PersonnelMedical personnelMedical) {
         this.date_debut = date_debut;
         this.date_fin = date_fin;
-        this.etat = etat;
+        this.etat = "en attente";
         this.commentaire = commentaire;
         this.dossier = dossier;
         this.service = service;

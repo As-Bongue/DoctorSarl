@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=divice-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Login</title>
+
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">-->
+    <link rel="stylesheet" th:href="@{/css/styl.css}" >
+</head>
+<body>
+            <div class="formu">
+                <form th:action="@{/login}" method="post">
+                    <div th:if="${param.error}">
+                        <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+                    </div>
+
+                    <div th:if="${param.logout}">
+                        <p class="text-warning">You have been logged out.</p>
+                    </div>
+                    <h2 class="my-5">Connectez-vous</h2>
+                    <div>
+                        <p>
+                            <input class="input" type="email" name="email" placeholder="Nom d'utilisateur" required autofocus autocomplete="none">
+                        </p>
+                        <p>
+                            <input class="input" type="password" name="password" placeholder="Mot de passe" required autocomplete="none">
+                        </p>
+                        <p>
+                            <input type="checkbox" name="remember-me">&nbsp;Remember Me
+                        </p>
+                        <p>
+                            <input type="submit" value="Conexion" class="btn btn-primary">
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+</body>
+</html>

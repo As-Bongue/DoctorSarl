@@ -1,7 +1,9 @@
 package com.doctorsarl.doctorsarl.services.services_implement;
 
 import com.doctorsarl.doctorsarl.entities.Personne;
+import com.doctorsarl.doctorsarl.entities.Role;
 import com.doctorsarl.doctorsarl.repository.PersonneRepository;
+import com.doctorsarl.doctorsarl.repository.RoleRepository;
 import com.doctorsarl.doctorsarl.services.interface_services.PersonneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,10 @@ import java.util.List;
 public class PesonneServiceImpl implements PersonneService {
 
     @Autowired
-    PersonneRepository personneRepository;
+    private PersonneRepository personneRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public Personne savePersonne(Personne p) {
@@ -42,5 +47,12 @@ public class PesonneServiceImpl implements PersonneService {
     @Override
     public List<Personne> getAllPersonne() {
         return personneRepository.findAll();
+    }
+
+    @Override
+    public void rgistedDefaultPersonne(Personne p) {
+        Role role = roleRepository.findById(3).get();
+        p.addRole(role);
+        personneRepository.save(p);
     }
 }

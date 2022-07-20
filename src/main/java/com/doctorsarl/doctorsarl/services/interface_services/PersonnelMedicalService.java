@@ -1,5 +1,6 @@
 package com.doctorsarl.doctorsarl.services.interface_services;
 
+import com.doctorsarl.doctorsarl.entities.Personne;
 import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface PersonnelMedicalService {
     List<PersonnelMedical> getAllPersonnelMedical();
     List<PersonnelMedical> getAllPersonnelMedicalByDisponibilite();
     void updateDisponibilitePersonnel(int id);
+    void rgistedDefaultPersonnel(PersonnelMedical p);
 }

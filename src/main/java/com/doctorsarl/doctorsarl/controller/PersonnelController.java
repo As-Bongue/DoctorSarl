@@ -38,7 +38,7 @@ public class PersonnelController {
     @PostMapping("/personnel_create")
     public String createPersonnel(PersonnelMedical personnelMedical, RedirectAttributes ra){
         personnelMedical.setDisponibilite(true);
-        personnelMedicalService.savePersonnelMedical(personnelMedical);
+        personnelMedicalService.rgistedDefaultPersonnel(personnelMedical);
         ra.addFlashAttribute("message", "personnel enregistrer avec sucess");
         return "redirect:/personnels";
     }

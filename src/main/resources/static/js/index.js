@@ -6,6 +6,12 @@ $('#logout').click(function () {
   $('#decon').toggleClass("show");
 });
 
+//etat dossier section
+
+$('.refresh-dossier').click(function () {
+  $('.etat-serv').toggleClass("active_dossier");
+});
+
 
 $(document).ready(function() {
   $("#dashboardTable").DataTable({

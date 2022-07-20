@@ -1,6 +1,7 @@
 package com.doctorsarl.doctorsarl.services.interface_services;
 
 import com.doctorsarl.doctorsarl.entities.Patient;
+import com.doctorsarl.doctorsarl.entities.Personne;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface PatientService {
     void deleteById( int id);
     Patient getPatient(int id);
     List<Patient> getAllPatient();
-
+    void rgistedDefaultPatient(Patient p);
 }

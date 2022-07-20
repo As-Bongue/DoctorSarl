@@ -21,14 +21,14 @@ public class testPersonnelMedica {
     @Autowired
     private PersonnelMedicalRepository personnelMedicalRepository;
 
-    @Test
-    @Rollback(false)
-    @Order(1)
-    public void testCreatePersonnel(){
-        PersonnelMedical p = new PersonnelMedical("bongue", "as", "yassa", "652586254", "bonguea25@gmail.com","", "dentiste", "douala");
-        personnelMedicalRepository.save(p);
-        assertThat(p.getId()).isGreaterThan(0);
-    }
+//    @Test
+//    @Rollback(false)
+//    @Order(1)
+//    public void testCreatePersonnel(){
+//        PersonnelMedical p = new PersonnelMedical("bongue", "as", "yassa", "652586254", "bonguea25@gmail.com","", "dentiste", "douala");
+//        personnelMedicalRepository.save(p);
+//        assertThat(p.getId()).isGreaterThan(0);
+//    }
 
     @Test
     @Rollback(false)

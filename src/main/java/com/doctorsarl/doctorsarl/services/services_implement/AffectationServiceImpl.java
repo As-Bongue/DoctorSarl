@@ -3,6 +3,7 @@ package com.doctorsarl.doctorsarl.services.services_implement;
 import com.doctorsarl.doctorsarl.entities.Dossier;
 import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
 import com.doctorsarl.doctorsarl.repository.AffectationRepository;
+import com.doctorsarl.doctorsarl.repository.DossierRepository;
 import com.doctorsarl.doctorsarl.services.interface_services.AffectationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class AffectationServiceImpl implements AffectationService {
 
     @Autowired
     private AffectationRepository affectationRepository;
+
+    @Autowired
+    private DossierRepository dossierRepository;
 
     @Override
     public com.doctorsarl.doctorsarl.entities.AffectationService saveAffectation(com.doctorsarl.doctorsarl.entities.AffectationService aff) {
@@ -71,5 +75,22 @@ public class AffectationServiceImpl implements AffectationService {
         return result;
     }
 
+    @Override
+    public void setDossierByAffectation(Dossier dossier) {
+        int nbre_aff = getAllAffectationsByDossier(dossier).size();
+        List<com.doctorsarl.doctorsarl.entities.AffectationService> aff0 = new ArrayList<>();
+        List<com.doctorsarl.doctorsarl.entities.AffectationService> aff = getAllAffectationsByDossier(dossier);
+
+        for (com.doctorsarl.doctorsarl.entities.AffectationService affetation: aff
+             ) {
+            if (affetation.getEtat().equals("terminé"))
+                aff0.add(affetation);
+        }
+        int nbre_aff_termine = aff0.size();
+
+        dossier.setStatut(nbre_aff != nbre_aff_termine);
+        dossierRepository.save(dossier);
+
+    }
 
 }

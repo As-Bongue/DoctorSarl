@@ -1,18 +1,24 @@
 package com.doctorsarl.doctorsarl.services.services_implement;
 
 import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
+import com.doctorsarl.doctorsarl.entities.Role;
 import com.doctorsarl.doctorsarl.repository.PersonnelMedicalRepository;
+import com.doctorsarl.doctorsarl.repository.RoleRepository;
 import com.doctorsarl.doctorsarl.services.interface_services.PersonnelMedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonneMedicalServiceImpl implements PersonnelMedicalService {
     @Autowired
     PersonnelMedicalRepository personnelMedicalRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public PersonnelMedical savePersonnelMedical(PersonnelMedical p) {
@@ -46,14 +52,19 @@ public class PersonneMedicalServiceImpl implements PersonnelMedicalService {
 
     @Override
     public List<PersonnelMedical> getAllPersonnelMedicalByDisponibilite() {
-        List<PersonnelMedical> personnelMedicals = new ArrayList<>();
-        List<PersonnelMedical> personnelMedicals1 = getAllPersonnelMedical();
-        for (PersonnelMedical personnel2:personnelMedicals1
-             ) {
-            if (personnel2.isDisponibilite())
-                personnelMedicals.add(personnel2);
-        }
-        return personnelMedicals;
+//        List<PersonnelMedical> personnelMedicals = new ArrayList<>();
+//        List<PersonnelMedical> personnelMedicals1 = getAllPersonnelMedical();
+//        personnelMedicals = personnelMedicals1.stream().
+//                filter(personnelMedical -> personnelMedical.isDisponibilite()==true)
+//                .collect(Collectors.toList());
+//        for (PersonnelMedical personnel2:personnelMedicals1
+//             ) {
+//            if (personnel2.isDisponibilite())
+//                personnelMedicals.add(personnel2);
+//        }
+        return getAllPersonnelMedical().stream().
+                filter(PersonnelMedical::isDisponibilite)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -63,6 +74,13 @@ public class PersonneMedicalServiceImpl implements PersonnelMedicalService {
             p.setDisponibilite(false);
         else
             p.setDisponibilite(true);
+        personnelMedicalRepository.save(p);
+    }
+
+    @Override
+    public void rgistedDefaultPersonnel(PersonnelMedical p) {
+        Role role = roleRepository.findById(3).get();
+        p.addRole(role);
         personnelMedicalRepository.save(p);
     }
 }

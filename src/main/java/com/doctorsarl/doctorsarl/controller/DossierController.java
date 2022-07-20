@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -35,26 +36,43 @@ public class DossierController {
         return "dossier/show_all";
     }
 
-    @RequestMapping("/dossier_create")
-    public String showCreateDossierForm(Model model){
-        List<Patient> patients = patientService.getAllPatient();
+    @GetMapping("/dossier_opened")
+    public String showAllOpenedDossiers(Model model){
+        List<Dossier> dossiers = dossierService.getAllDossierOuvert();
+        model.addAttribute("dossiers", dossiers);
+        return "dossier/opened";
+    }
+
+    @GetMapping("/dossier_closed")
+    public String showAllClosededDossiers(Model model){
+        List<Dossier> dossiers = dossierService.getAllDossierFermer();
+        model.addAttribute("dossiers", dossiers);
+        return "dossier/closed";
+    }
+
+    @RequestMapping("/dossier_create/{id}")
+    public String showCreateDossierForm(@PathVariable(value = "id") int id, Model model){
+        Patient patient = patientService.getPatient(id);
+//        List<Patient> patients = patientService.getAllPatient();
         model.addAttribute("dossier", new Dossier());
-        model.addAttribute("patients", patients);
+        model.addAttribute("patient", patient);
         return "dossier/create_form";
     }
 
     @PostMapping("/dossier_create")
-    public String ceateDossier(Dossier dossier){
+    public String ceateDossier(Dossier dossier, RedirectAttributes r){
         dossierService.saveDossier(dossier);
-        return "redirect:/dossiers";
+        int id = dossier.getId();
+        r.addFlashAttribute("message", "blaaaaaaaa");
+        return "redirect:/dossier_show/" +id;
     }
 
     @GetMapping("/dossier_edit/{id}")
     public String showEditDossiersForm(@PathVariable("id") int id, Model model){
         Dossier dossier = dossierService.getDossier(id);
-        List<Patient> patients = patientService.getAllPatient();
+        Patient patient = dossier.getPatient();
         model.addAttribute("dossier", dossier);
-        model.addAttribute("patients", patients);
+        model.addAttribute("patient", patient);
         return "dossier/create_form";
     }
 

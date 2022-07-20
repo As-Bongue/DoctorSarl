@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +17,11 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/images/**", "/css/**", "/js/**", "/register/**", "/webjars/**", "/");
+    }
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -44,14 +50,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/personnels").authenticated()
-                .anyRequest().permitAll()
+//                .antMatchers("/").hasAnyAuthority("secretaire", "administrateur")
+                .antMatchers("/personnel_create").hasAnyAuthority("admin")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                    .loginPage("/login")
                     .usernameParameter("email")
-                    .defaultSuccessUrl("/personnels")
+                    .defaultSuccessUrl("/dashboard")
                     .permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/").permitAll();
+                .logout().logoutSuccessUrl("/").permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
+        ;
     }
+
 }

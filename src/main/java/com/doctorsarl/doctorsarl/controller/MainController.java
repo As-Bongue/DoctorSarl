@@ -2,8 +2,7 @@ package com.doctorsarl.doctorsarl.controller;
 
 import com.doctorsarl.doctorsarl.entities.Personne;
 import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
-import com.doctorsarl.doctorsarl.services.interface_services.PersonneService;
-import com.doctorsarl.doctorsarl.services.interface_services.PersonnelMedicalService;
+import com.doctorsarl.doctorsarl.services.interface_services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,11 +19,25 @@ public class MainController {
     private PersonneService personneService;
 
     @Autowired
-    PersonnelMedicalService personnelMedicalService;
+    private PersonnelMedicalService personnelMedicalService;
+
+    @Autowired
+    private ServiceService serviceService;
+
+    @Autowired
+    private DossierService dossierService;
+
+    @Autowired
+    private AffectationService affectationService;
 
     @GetMapping("/")
     public String showHomePge() {
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String showLoginForm(){
+        return "login";
     }
 
     @GetMapping("/register")
@@ -44,8 +57,17 @@ public class MainController {
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model){
+        int perso, doss, aff, serv ;
         List<PersonnelMedical> personnelMedicals = personnelMedicalService.getAllPersonnelMedical();
+        perso = personnelMedicals.size();
+        doss = dossierService.getAllDossier().size();
+        aff = affectationService.getAllAffectation().size();
+        serv = serviceService.getAllServices().size();
         model.addAttribute("personnels", personnelMedicals);
+        model.addAttribute("aff", aff);
+        model.addAttribute("serv", serv);
+        model.addAttribute("doss", doss);
+        model.addAttribute("perso", perso);
         return "admin/index";
     }
 

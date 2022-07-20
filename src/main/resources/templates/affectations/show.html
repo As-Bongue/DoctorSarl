@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,34 +19,59 @@
 <section id="menu">
     <div class="logo">
         <img src="" alt="">
-        <h2>DoctorSarl</h2>
+        <h2>DOCTORS-AT-HOME</h2>
+        <div class="online">
+            <span class="span" th:text="${#request.userPrincipal.principal.fullName}"></span>
+            <span class="green"></span>
+        </div>
     </div>
 
     <div class="items" style="margin-top: 70px;">
-        <li>
-            <img th:src="@{/images/home_24px.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Accueil</a>
-        </li>
-        <li>
-            <img th:src="@{/images/dashboard.png}" alt="" class="i"><a href="#" style="font-size: 22px;">Dashboard</a>
-        </li>
-        <li>
-            <img th:src="@{/images/patient.png}" alt="" class="i"><a th:href="@{/personnels}" style="font-size: 22px;">Personnel</a>
-        </li>
-        <li>
-            <img th:src="@{/images/personal.png}" alt="" class="i"><a th:href="@{/categories}" style="font-size: 22px;">Categorie</a>
-        </li>
-        <li>
-            <img th:src="@{/images/help.png}" alt="" class="i"><a th:href="@{/services}" style="font-size: 22px;">Service</a></i>
-        </li>
-        <li>
-            <img th:src="@{/images/categorize.png}" alt="" class="i"><a th:href="@{/patients}" style="font-size: 22px;">Patient</a>
-        </li>
-        <li>
-            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/dossiers}" style="font-size: 22px;">Dossier</a>
-        </li>
-        <li>
-            <img th:src="@{/images/documents.png}" alt="" class="i"><a th:href="@{/affectations}" style="font-size: 22px;">Affectation</a>
-        </li>
+
+        <ul>
+            <li>
+                <a th:href="@{/dashboard}">
+                    <img th:src="@{/images/dashboard.png}" alt="">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/personnels}">
+                    <img th:src="@{/images/patient.png}" alt="">
+                    <span>Personnel</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/categories}">
+                    <img th:src="@{/images/categorize.png}" alt="">
+                    <span>Categorie</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/services}">
+                    <img th:src="@{/images/help.png}" alt="">
+                    <span>Service</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/patients}">
+                    <img th:src="@{/images/personal.png}" alt="">
+                    <span>Patient</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/dossiers}">
+                    <img th:src="@{/images/folder0.png}" alt="">
+                    <span>Dossier</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/affectations}">
+                    <img th:src="@{/images/documents.png}" alt="">
+                    <span>Affectation</span>
+                </a>
+            </li>
+        </ul>
     </div>
 </section>
 
@@ -58,15 +84,22 @@
                 <img th:src="@{/images/menu.png}" alt="" class="i">
             </div>
             <div class="search">
-                <a href="#"><img th:src="@{/images/search.png}" alt="" class="i"></a>
-                <input type="text" placeholder="Search">
+                <img th:src="@{/images/melodis.jpg}" alt="">
+                <!--                <input type="text" placeholder="Search">-->
             </div>
         </div>
 
         <!-- profile -->
         <div class="profile">
             <img th:src="@{/images/bell.png}" alt="" class="i">
-            <img th:src="@{/images/administrator.png}" alt="" class="i">
+            <img id="logout" th:src="@{/images/administrator.png}" alt="" class="i">
+            <div id="decon">
+                <ul>
+                    <li th:text="${#request.userPrincipal.principal.fullName}"></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a th:href="@{/}">deconexion</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -80,7 +113,7 @@
     <div class="formulaire" style="margin: 3% 15% 8% 15%;">
         <h1 class="text-center mb-5" th:text=" 'Affectation #' +${affectation.id}"> </h1>
 
-        <div class="detail_dossier my-5 mx-5">
+        <div class="detail_dossier my-5 d-flex justify-content-between" >
             <p>
                 <span class="fw-bold mx-5">Date debut : </span>
                 <span th:text="${affectation.date_debut}"></span><br>
@@ -101,6 +134,8 @@
                 <span th:text="${affectation.commentaire}"></span>
             </p>
 
+        </div>
+        <div class="detail_dossier d-flex justify-content-center">
             <p>
                 <span class="fw-bold mx-5">Nom du patient : </span>
                 <span th:text="${affectation.dossier.patient.nom}"></span><br>
@@ -110,18 +145,41 @@
                 <span th:text="${affectation.dossier.patient.telephone}"></span><br>
                 <span class="fw-bold mx-5">Adresse Mail : </span>
                 <span th:text="${affectation.dossier.patient.email}"></span><br>
-                <span class="fw-bold mx-5">Sexe du patient : </span>
+                <span class="fw-bold mx-5">Sexe : </span>
                 <span th:text="${affectation.dossier.patient.sexe == m}? 'masculin' : 'feminin' "> </span><br>
                 <span class="fw-bold mx-5">Age du patient : </span>
-                <span th:text="${affectation.dossier.patient.age} + 'ans'">Age du patient : </span><br>
-                <span class="fw-bold mx-5">Adresse du patient : </span>
+                <span th:text="${affectation.dossier.patient.age} + 'ans'"></span><br>
+                <span class="fw-bold mx-5">Adresse : </span>
                 <span th:text=" ${affectation.dossier.patient.adresse}"></span><br>
             </p><br>
+
+            <ul><li class="dropdown-divider"></li></ul>
+
+            <p>
+                <span class="fw-bold mx-5">Nom du personnel : </span>
+                <span th:text="${affectation.personnelMedical.nom}"></span><br>
+                <span class="fw-bold mx-5">Prenom : </span>
+                <span th:text="${affectation.personnelMedical.prenom}"></span><br>
+                <span class="fw-bold mx-5">Numero de telephone : </span>
+                <span th:text="${affectation.personnelMedical.telephone}"></span><br>
+                <span class="fw-bold mx-5">Adresse Mail : </span>
+                <span th:text="${affectation.personnelMedical.email}"></span><br>
+                <span class="fw-bold mx-5">Profession : </span>
+                <span th:text="${affectation.personnelMedical.profession}"></span><br>
+                <span class="fw-bold mx-5">Adresse Ville : </span>
+                <span th:text=" ${affectation.personnelMedical.ville}"></span><br>
+                <span class="fw-bold mx-5">Statut : </span>
+                <span th:text=" ${affectation.personnelMedical.disponibilite} ? 'disponible' : 'ocupé' "></span><br>
+            </p>
         </div>
 
     </div>
 
 </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script th:src="@{/js/index.js}"></script>
 

@@ -16,4 +16,5 @@ public interface AffectationService {
     List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectation();
     List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationsByDossier(Dossier dossier);
     List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationsByPersonnel(PersonnelMedical personnelMedical);
+    void setDossierByAffectation(Dossier dossier);
 }
