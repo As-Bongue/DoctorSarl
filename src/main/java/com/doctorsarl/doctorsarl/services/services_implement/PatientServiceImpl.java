@@ -1,9 +1,7 @@
 package com.doctorsarl.doctorsarl.services.services_implement;
 
 import com.doctorsarl.doctorsarl.entities.Patient;
-import com.doctorsarl.doctorsarl.entities.Role;
 import com.doctorsarl.doctorsarl.repository.PatientRepository;
-import com.doctorsarl.doctorsarl.repository.RoleRepository;
 import com.doctorsarl.doctorsarl.services.interface_services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +13,6 @@ public class PatientServiceImpl implements PatientService {
 
     @Autowired
     PatientRepository patientRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
 
     @Override
     public Patient savePatient(Patient p) {
@@ -49,11 +44,5 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.findAll();
     }
 
-    @Override
-    public void rgistedDefaultPatient(Patient p) {
-        Role role = roleRepository.findById(3).get();
-        p.addRole(role);
-        patientRepository.save(p);
-    }
 
 }

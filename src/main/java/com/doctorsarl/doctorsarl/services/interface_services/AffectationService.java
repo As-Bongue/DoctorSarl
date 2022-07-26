@@ -14,6 +14,7 @@ public interface AffectationService {
     void deleteById(int id);
     com.doctorsarl.doctorsarl.entities.AffectationService getAffectation(int id);
     List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectation();
+    List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationActive();
     List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationsByDossier(Dossier dossier);
     List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationsByPersonnel(PersonnelMedical personnelMedical);
     void setDossierByAffectation(Dossier dossier);

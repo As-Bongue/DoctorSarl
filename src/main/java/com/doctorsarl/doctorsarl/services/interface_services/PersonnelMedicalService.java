@@ -15,5 +15,4 @@ public interface PersonnelMedicalService {
     List<PersonnelMedical> getAllPersonnelMedical();
     List<PersonnelMedical> getAllPersonnelMedicalByDisponibilite();
     void updateDisponibilitePersonnel(int id);
-    void rgistedDefaultPersonnel(PersonnelMedical p);
 }

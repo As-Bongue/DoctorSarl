@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class MainController {
 
     @Autowired
@@ -35,10 +37,10 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/login")
-    public String showLoginForm(){
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String showLoginForm(){
+//        return "login";
+//    }
 
     @GetMapping("/register")
     public String showRegisterForm(Model model){
@@ -53,22 +55,6 @@ public class MainController {
         personne.setPassword(encoderPassword);
         personneService.savePersonne(personne);
         return "register_sucess";
-    }
-
-    @GetMapping("/dashboard")
-    public String showDashboard(Model model){
-        int perso, doss, aff, serv ;
-        List<PersonnelMedical> personnelMedicals = personnelMedicalService.getAllPersonnelMedical();
-        perso = personnelMedicals.size();
-        doss = dossierService.getAllDossier().size();
-        aff = affectationService.getAllAffectation().size();
-        serv = serviceService.getAllServices().size();
-        model.addAttribute("personnels", personnelMedicals);
-        model.addAttribute("aff", aff);
-        model.addAttribute("serv", serv);
-        model.addAttribute("doss", doss);
-        model.addAttribute("perso", perso);
-        return "admin/index";
     }
 
 }

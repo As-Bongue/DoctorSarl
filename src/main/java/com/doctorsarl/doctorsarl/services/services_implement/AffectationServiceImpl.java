@@ -51,6 +51,19 @@ public class AffectationServiceImpl implements AffectationService {
     }
 
     @Override
+    public List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationActive() {
+        List<com.doctorsarl.doctorsarl.entities.AffectationService> result = new ArrayList<>();
+
+        List<com.doctorsarl.doctorsarl.entities.AffectationService> aff = getAllAffectation();
+        for (com.doctorsarl.doctorsarl.entities.AffectationService affectation :aff
+             ) {
+            if (!affectation.getEtat().equals("terminé"))
+                result.add(affectation);
+        }
+        return result;
+    }
+
+    @Override
     public List<com.doctorsarl.doctorsarl.entities.AffectationService> getAllAffectationsByDossier(Dossier dossier) {
         List<com.doctorsarl.doctorsarl.entities.AffectationService> result = new ArrayList<>();
         List<com.doctorsarl.doctorsarl.entities.AffectationService> AllMyaffectations = affectationRepository.findAll();

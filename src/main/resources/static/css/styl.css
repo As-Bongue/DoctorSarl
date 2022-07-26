@@ -67,6 +67,7 @@ body{
 #menu .items ul li{
   margin-left: -30px;
   padding: 15px 0;
+  list-style-type: none;
   transition: 0.3s ease;
 }
 
@@ -102,35 +103,6 @@ body{
   cursor: pointer;
   border-left: 5px solid rgb(134, 141, 151);
 }
-
-/*#menu .items ul li{*/
-/*  list-style: none;*/
-/*  !*padding: 15px 0;*!*/
-/*  transition: 0.3s ease;*/
-/*}*/
-
-/*#menu .items li a{*/
-/*  text-decoration: none;*/
-/*  color: rgb(134, 141, 151);*/
-/*  font-size: 20px;*/
-/*  font-weight: 900;*/
-/*  transition: 0.3s ease;*/
-/*}*/
-
-
-/*#menu .items li:nth-child(1) {*/
-/*    border-left: 4px solid #fff;*/
-/*}*/
-
-/*#menu .items li:hover{*/
-/*  background: #253047;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*#menu .items li:hover .i,*/
-/*#menu .items li:hover a{*/
-/*  color: #f3f4f6;*/
-/*}*/
 
 
 /* interface */
@@ -170,15 +142,6 @@ body{
   height: 70px;
 }
 
-/*#interface .navigation .search .i{*/
-/*  margin-right: 14px;*/
-/*}*/
-
-/*#interface .navigation .search input{*/
-/*  border: none;*/
-/*  outline: none;*/
-/*  font-size: 14px;*/
-/*}*/
 
 #interface .navigation .profile{
   display: flex;
@@ -262,6 +225,7 @@ body{
   align-items: center;
 }
 
+
 .values .val-box .i {
   font-size: 25px;
   width: 60px;
@@ -310,31 +274,12 @@ body{
   border-radius: 8px;
 }
 
-/*.board img{*/
-/*  width: 45px;*/
-/*  height: 45px;*/
-/*  object-fit: cover;*/
-/*  border-radius: 50%;*/
-/*  margin-right: 15px;*/
-/*}*/
 
 .board h5{
   font-weight: 600;
   font-size: 14px;
 }
 
-/*.board p{*/
-/*  font-weight: 400;*/
-/*  font-size: 12px;*/
-/*  color: #787d8d;*/
-/*}*/
-
-/*.board .personal{*/
-/*  display: flex;*/
-/*  justify-content: flex-start;*/
-/*  align-items: center;*/
-/*  text-align: start;*/
-/*}*/
 
 table {
   border-collapse: collapse;
@@ -372,83 +317,24 @@ tbody tr td a{
 
 /*form section*/
 
-
-
-/*.active p{*/
-/*  background: #d7fada;*/
-/*  padding: 2px 10px;*/
-/*  display: inline-block;*/
-/*  border-radius: 40px;*/
-/*  color: #2b2b2b;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.edit a{*/
-/*  text-decoration: none;*/
-/*  font-size: 14px;*/
-/*  color: #2b8b43;*/
-/*  font-weight: 600;*/
-/*}*/
-
-/*.delete a{*/
-/*  text-decoration: none;*/
-/*  font-size: 14px;*/
-/*  color: #f03e3e;*/
-/*  font-weight: 600;*/
-/*}*/
-
-
-/*login section*/
-
-/*.formulair .image{*/
-/*  height: 600px;*/
-/*}*/
-/*.formulair .image img{*/
-/*  width: 75%;*/
-/*  height: 100%;*/
-/*  border-radius: 40%;*/
-/*  margin-left: 70px;*/
-
-/*}*/
 .formu{
-  width: 100%;
-  background: url("static/images/serv3.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  padding: 24px;
 }
-.formu form{
-  border: 1px solid grey;
-  border-radius: 20%;
-  line-height: 70px;
-  padding: 20px 30px;
-  width: 300px;
-  margin: auto;
-  margin-top: 200px;
-  text-align: center;
-  background: white;
-  box-shadow: 2px 2px 25px grey;
+.formu .card span{
+  font-weight: 900;
+  font-size: 22px;
 }
-.formu form .input{
-  border: none;
-  border-radius: 15px;
-  padding: 10px;
-  outline: none;
-  box-shadow: 2px 2px 6px darkgrey;
+.formu .card img{
+  height: 50px;
+  width: 50px;
 }
-.formu form .btn{
-  background: rgb(59, 59, 236);
-  padding: 5px 10px;
-  font-weight: 700;
-  font-size: 20px;
-  border-radius: 15px;
-  color: white;
+.formu .card .card-group form input{
+  width: 500px;
 }
-
-.formu form h2{
-  color: black;
-  font-weight: 700;
-}
-
 
 /*etat dossier section*/
 

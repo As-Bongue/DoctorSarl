@@ -13,5 +13,4 @@ public interface PatientService {
     void deleteById( int id);
     Patient getPatient(int id);
     List<Patient> getAllPatient();
-    void rgistedDefaultPatient(Patient p);
 }

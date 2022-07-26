@@ -1,14 +1,11 @@
 package com.doctorsarl.doctorsarl.services.services_implement;
 
 import com.doctorsarl.doctorsarl.entities.PersonnelMedical;
-import com.doctorsarl.doctorsarl.entities.Role;
 import com.doctorsarl.doctorsarl.repository.PersonnelMedicalRepository;
-import com.doctorsarl.doctorsarl.repository.RoleRepository;
 import com.doctorsarl.doctorsarl.services.interface_services.PersonnelMedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,9 +13,6 @@ import java.util.stream.Collectors;
 public class PersonneMedicalServiceImpl implements PersonnelMedicalService {
     @Autowired
     PersonnelMedicalRepository personnelMedicalRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
 
     @Override
     public PersonnelMedical savePersonnelMedical(PersonnelMedical p) {
@@ -77,10 +71,4 @@ public class PersonneMedicalServiceImpl implements PersonnelMedicalService {
         personnelMedicalRepository.save(p);
     }
 
-    @Override
-    public void rgistedDefaultPersonnel(PersonnelMedical p) {
-        Role role = roleRepository.findById(3).get();
-        p.addRole(role);
-        personnelMedicalRepository.save(p);
-    }
 }

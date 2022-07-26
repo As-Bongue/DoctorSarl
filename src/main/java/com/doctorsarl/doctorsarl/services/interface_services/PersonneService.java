@@ -12,5 +12,4 @@ public interface PersonneService {
     void deleteById(int id);
     Personne getPersonne(int id);
     List<Personne> getAllPersonne();
-    void rgistedDefaultPersonne(Personne p);
 }

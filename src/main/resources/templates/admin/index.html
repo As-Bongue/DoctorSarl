@@ -9,8 +9,10 @@
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css"/>
-  <!--  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/js/bootstrap.min.js}">-->
-  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 
@@ -32,43 +34,43 @@
 
     <ul>
       <li>
-        <a th:href="@{/dashboard}">
+        <a th:href="@{/admin/dashboard}">
           <img th:src="@{/images/dashboard.png}" alt="">
           <span>Dashboard</span>
         </a>
       </li>
       <li>
-        <a th:href="@{/personnels}">
+        <a th:href="@{/admin/personnels}">
           <img th:src="@{/images/patient.png}" alt="">
           <span>Personnel</span>
         </a>
       </li>
       <li>
-        <a th:href="@{/categories}">
+        <a th:href="@{/admin/categories}">
           <img th:src="@{/images/categorize.png}" alt="">
           <span>Categorie</span>
         </a>
       </li>
       <li>
-        <a th:href="@{/services}">
+        <a th:href="@{/admin/services}">
           <img th:src="@{/images/help.png}" alt="">
           <span>Service</span>
         </a>
       </li>
       <li>
-        <a th:href="@{/patients}">
+        <a th:href="@{/admin/patients}">
           <img th:src="@{/images/personal.png}" alt="">
           <span>Patient</span>
         </a>
       </li>
       <li>
-        <a th:href="@{/dossiers}">
+        <a th:href="@{/admin/dossiers}">
           <img th:src="@{/images/folder0.png}" alt="">
           <span>Dossier</span>
         </a>
       </li>
       <li>
-        <a th:href="@{/affectations}">
+        <a th:href="@{/admin/affectations}">
           <img th:src="@{/images/documents.png}" alt="">
           <span>Affectation</span>
         </a>
@@ -99,7 +101,9 @@
         <ul>
           <li th:text="${#request.userPrincipal.principal.fullName}"></li>
           <li class="dropdown-divider"></li>
-          <li><a th:href="@{/}">deconexion</a></li>
+          <form class="my-lg-0" method="post" th:action="@{/logout}">
+            <input type="submit" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" value="Deconexion">
+          </form>
         </ul>
       </div>
     </div>
@@ -116,21 +120,21 @@
       <img th:src="@{/images/doctors_bag_40px.png}" class="i">
       <div>
         <h3 th:text="${perso}"></h3>
-        <span>Personnels</span>
+        <span>Total Personnel</span>
       </div>
     </div>
     <div class="val-box">
       <img th:src="@{/images/service.png}" class="i">
       <div>
         <h3 th:text="${serv}"></h3>
-        <span>Services</span>
+        <span>Total Service</span>
       </div>
     </div>
     <div class="val-box">
       <img th:src="@{/images/edit_folder_100px.png}" class="i">
       <div>
         <h3 th:text="${doss}"></h3>
-        <span>Dossiers</span>
+        <span>Total Dossier</span>
       </div>
     </div>
     <div class="val-box">
@@ -138,6 +142,37 @@
       <div>
         <h3 th:text="${aff}"></h3>
         <span>Affectations</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="values">
+    <div class="val-box">
+      <img th:src="@{/images/doctors_bag_40px.png}" class="i">
+      <div>
+        <h3 th:text="${perso_dispo}"></h3>
+        <span>Personnels dispo</span>
+      </div>
+    </div>
+    <div class="val-box">
+      <img th:src="@{/images/service.png}" class="i">
+      <div>
+        <h3 th:text="${pat}"></h3>
+        <span>Patients</span>
+      </div>
+    </div>
+    <div class="val-box">
+      <img th:src="@{/images/edit_folder_100px.png}" class="i">
+      <div>
+        <h3 th:text="${doss_ouvert}"></h3>
+        <span>Dossiers ouvert</span>
+      </div>
+    </div>
+    <div class="val-box">
+      <img th:src="@{/images/affection.png}" class="i">
+      <div>
+        <h3 th:text="${aff_cour}"></h3>
+        <span>Affectations en cour</span>
       </div>
     </div>
   </div>
@@ -178,7 +213,7 @@
           </td>
 
           <td class="edit">
-            <a th:href="@{'/personnel_detail/' + ${personnel.id}}"><img th:src="@{/images/info.png}"></a>
+            <a th:href="@{'/admin/personnel_detail/' + ${personnel.id}}"><img th:src="@{/images/info.png}"></a>
           </td>
         </tr>
       </th:block>
@@ -187,9 +222,6 @@
   </div>
 
 </section>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 
 <script th:src="@{/js/index.js}"></script>
 

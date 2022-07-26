@@ -2,8 +2,7 @@ package com.doctorsarl.doctorsarl.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -17,25 +16,24 @@ public class Personne implements Serializable {
 
     @Column(nullable = false)
     private String nom;
+
     private  String prenom;
-    @Column(nullable = false)
+
     private String adresse;
-    @Column(nullable = false, unique = true)
+
+    @Column( unique = true)
     private String telephone;
-    @Column(nullable = false, unique = false, length = 25)
+
+    @Column(nullable = false, unique = true, length = 25)
     private  String email;
 
     private String password;
+
     private boolean enabled;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+    private String roles = "";
 
+    private String permissions = "";
 
     public Personne() {
     }
@@ -47,6 +45,18 @@ public class Personne implements Serializable {
         this.telephone = telephone;
         this.email = email;
         this.password = password;
+    }
+
+    public Personne(String nom, String prenom, String adresse, String telephone, String email, String password, String roles, String permissions) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.permissions = permissions;
+        this.enabled = true;
     }
 
     public int getId() {
@@ -113,16 +123,34 @@ public class Personne implements Serializable {
         this.enabled = enabled;
     }
 
-    public Set<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 
-    public void addRole(Role role){
-        this.roles.add(role);
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+
+    public List<String> getRoleList(){
+        if (this.roles.length() > 0){
+            return Arrays.asList(this.roles.split(","));
+        }
+        return new ArrayList<>();
+    }
+
+    public List<String> getPermissionList(){
+        if (this.permissions.length() > 0){
+            return Arrays.asList(this.permissions.split(","));
+        }
+        return new ArrayList<>();
     }
 
     @Override
@@ -136,7 +164,8 @@ public class Personne implements Serializable {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
-                ", roles=" + roles +
+                ", roles='" + roles + '\'' +
+                ", permissions='" + permissions + '\'' +
                 '}';
     }
 }
